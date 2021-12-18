@@ -1,28 +1,19 @@
-import React, {useEffect, useState} from "react"
+import React, { useState} from "react"
 import axios from "axios"
+import ResponseMessage from "../../common/ResponseMessage"
 
 export default function AddTutor() {
     const [firstname, setFirstname] = useState("")
     const [lastname, setLastname] = useState("")
     const [email, setEmail] = useState("")
     const [responseData, setResponseData] = useState(null)
-    const [urls, setURLS] = useState("")
-
-    useEffect(()=> {
-        axios.get(
-           `http://localhost:8000/get-tutor?id=17`, {
-           } 
-          )
-      .then(res => {
-        console.log(res)
-      })
-    },[])
+   
 
 
     const formSubmit = (e) => {
         e.preventDefault()
-        const baseEndPoint = "http://localhost:8000"  
-        const apiEndPoint = baseEndPoint+"/create-tutor"
+        const baseEndPoint = process.env.REACT_APP_API_END_POINT   
+        const apiEndPoint = baseEndPoint+"/tutors"
        
     axios.post(apiEndPoint, {
         tutor_first_name: firstname,
@@ -30,9 +21,10 @@ export default function AddTutor() {
             tutor_email: email
     } )
       .then(res => {
-        console.log(res);
-        console.log(res.data);
-        setResponseData(res.data)
+        setResponseData(res.data.status)
+      }).catch(err=>{
+        console.log(err)
+        setResponseData(err.response.data)
       })
     }
     return (
@@ -60,7 +52,7 @@ export default function AddTutor() {
     <input 
     value={email}
     onChange={(e)=>setEmail(e.target.value)}
-    type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+    type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
    
   </div>
 
@@ -68,13 +60,9 @@ export default function AddTutor() {
   <button type="submit" className="btn btn-primary mt-2">Submit</button>
 </form>
 
-<div className="mt-5">
-    {responseData && 
-    <div>Save Response ===
-    {JSON.stringify(responseData)}
-    </div>
-    }
-</div>
+
+    <ResponseMessage response={responseData} />
+
         </div>
     )
 }

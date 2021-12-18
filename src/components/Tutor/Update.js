@@ -1,32 +1,51 @@
 import React, {useEffect, useState} from "react"
+import { useLocation } from "react-router";
 import axios from "axios"
+import ResponseMessage from "../../common/ResponseMessage"
 
 export default function UpdateTutor() {
+  
+  let data = useLocation();
     const [id, setId] = useState("")
     const [firstname, setFirstname] = useState("")
     const [lastname, setLastname] = useState("")
     const [email, setEmail] = useState("")
     const [responseData, setResponseData] = useState(null)
    
-
+useEffect(()=>{
+let id = data.pathname.split("/")[2]
+  if(id) {
+    const baseEndPoint = process.env.REACT_APP_API_END_POINT   
+    const apiEndPoint = baseEndPoint+"/tutors/"+id
  
+axios.get(apiEndPoint)
+  .then(res => {
+    const {tutor_email, tutor_first_name, tutor_last_name} = res.data.data
+    setId(id)
+    setEmail(tutor_email)
+    setFirstname(tutor_first_name)
+    setLastname(tutor_last_name)
+  })
+  }
+
+},[])
 
 
     const formSubmit = (e) => {
         e.preventDefault()
-        const baseEndPoint = "http://localhost:8000"  
-        const apiEndPoint = baseEndPoint+"/update-tutor"
+        const baseEndPoint = process.env.REACT_APP_API_END_POINT   
+        const apiEndPoint = baseEndPoint+"/tutors/"+id
        
     axios.patch(apiEndPoint, {
-        id: id,
         tutor_first_name: firstname,
             tutor_last_name: lastname,
             tutor_email: email
     } )
       .then(res => {
-        console.log(res);
-        console.log(res.data);
-        setResponseData(res.data)
+        setResponseData(res.data.status)
+      }).catch(err=>{
+    
+        setResponseData(err.response.data)
       })
     }
     return (
@@ -64,7 +83,7 @@ export default function UpdateTutor() {
     <input 
     value={email}
     onChange={(e)=>setEmail(e.target.value)}
-    type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+    type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
    
   </div>
 
@@ -72,13 +91,7 @@ export default function UpdateTutor() {
   <button type="submit" className="btn btn-primary mt-2">Submit</button>
 </form>
 
-<div className="mt-5">
-    {responseData && 
-    <div>Save Response ===
-    {JSON.stringify(responseData)}
-    </div>
-    }
-</div>
+<ResponseMessage response={responseData} />
         </div>
     )
 }

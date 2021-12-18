@@ -1,25 +1,28 @@
-import React, {useEffect, useState} from "react"
+import React, { useState} from "react"
 import axios from "axios"
+import ResponseMessage from "../../common/ResponseMessage"
 
 export default function GetByIdTutor() {
     const [id, setId] = useState("")
-
     const [responseData, setResponseData] = useState(null)
+    const [errMsg, setErrMsg] = useState(null)
+    const [showLoader, setShowLoader] = useState(false)
  
-    const formSubmit = (e) => {
+    const formSubmit = async (e) => {
         e.preventDefault()
-        const baseEndPoint = "http://localhost:8000"  
-        const apiEndPoint = baseEndPoint+"/get-tutor?id="+id
-       
+        const baseEndPoint = process.env.REACT_APP_API_END_POINT   
+        const apiEndPoint = baseEndPoint+"/tutors/"+id
+       setShowLoader(true)
     axios.get(apiEndPoint)
       .then(res => {
-        console.log(res);
-        console.log(res.data);
-        setResponseData(res.data)
-        
+        setShowLoader(false)
+        setResponseData(res.data.data)
+        setErrMsg(null)
       })
       .catch((err)=>{
-          setResponseData(err.message)
+        setShowLoader(false)
+        setResponseData(null)
+        setErrMsg(err.response.message ? err.response.message : "Error" )
       })
     }
     return (
@@ -42,16 +45,20 @@ export default function GetByIdTutor() {
 </form>
 
 <div className="mt-5">
-    {responseData && 
-    <div>Get by Response ===
-    {Array.isArray(responseData) ? responseData.map((i,index)=>{
-        return <li key={index}>{i}</li>
-    })
-    : JSON.stringify(responseData)}
-    </div>
+    {showLoader ? "Fetching....." :
+    responseData && 
+   <div> 
+      <ul className="list-group">
+      <li className="list-group-item">First Name: {responseData ? responseData.tutor_first_name : ""}</li>
+      <li className="list-group-item">Last Name: {responseData ? responseData.tutor_last_name : ""}</li>
+      <li className="list-group-item">Email: {responseData ? responseData.tutor_email : ""}</li>
+      </ul>
+      </div>
+    
     }
   
 </div>
+<ResponseMessage response={errMsg} />
         </div>
     )
 }

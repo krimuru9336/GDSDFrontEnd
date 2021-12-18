@@ -1,5 +1,6 @@
-import React, {useEffect, useState} from "react"
+import React, { useState} from "react"
 import axios from "axios"
+import ResponseMessage from "../../common/ResponseMessage"
 
 export default function DeleteTutor() {
     const [id, setId] = useState("")
@@ -8,14 +9,14 @@ export default function DeleteTutor() {
  
     const formSubmit = (e) => {
         e.preventDefault()
-        const baseEndPoint = "http://localhost:8000"  
-        const apiEndPoint = baseEndPoint+"/delete-tutor?id="+id
+        const baseEndPoint = process.env.REACT_APP_API_END_POINT  
+        const apiEndPoint = baseEndPoint+"/tutors/"+id
        
-    axios.get(apiEndPoint)
+    axios.delete(apiEndPoint)
       .then(res => {
-        console.log(res);
-        console.log(res.data);
-        setResponseData(res.data)
+        setResponseData(res.data.status)
+      }).catch(err=>{
+        setResponseData("Error")
       })
     }
     return (
@@ -37,13 +38,8 @@ export default function DeleteTutor() {
   <button type="submit" className="btn btn-primary mt-2">Delete</button>
 </form>
 
-<div className="mt-5">
-    {responseData && 
-    <div>Delete Response ===
-    {JSON.stringify(responseData)}
-    </div>
-    }
-</div>
+
+<ResponseMessage response={responseData} />
         </div>
     )
 }
