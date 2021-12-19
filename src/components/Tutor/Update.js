@@ -52,43 +52,43 @@ axios.get(apiEndPoint)
         <div>
             <h1>Update Tutor</h1>
             <form onSubmit={formSubmit}>
-  <div class="form-group">
-  <div class="form-group">
-    <label htmlFor="exampleInputEmail13">Id</label>
+  
+  <div className="form-group col-3">
+    <label htmlFor="id">Id</label>
     <input type="number"
     value={id}
     onChange={(e)=>setId(e.target.value)}
-    class="form-control" id="exampleInputEmail13" 
+    className="form-control" id="id" 
     aria-describedby="emailHelp" placeholder="Enter Id" />
-   
   </div>
-
-    <label for="exampleInputEmail1">FirstName</label>
+  <div className="form-group col-3">
+    <label htmlFor="fname">FirstName</label>
     <input type="text"
     value={firstname}
     onChange={(e)=>setFirstname(e.target.value)}
-    class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter firstname" />
+    className="form-control" id="fname" aria-describedby="emailHelp" placeholder="Enter firstname" />
    
   </div>
-  <div class="form-group">
-    <label for="exampleInputEmail1">LastName</label>
+  <div className="form-group col-3">
+    <label htmlFor="lname">LastName</label>
     <input 
     value={lastname}
     onChange={(e)=>setLastname(e.target.value)}
-    type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter lastname" />
+    type="text" className="form-control" id="lname" aria-describedby="emailHelp" placeholder="Enter lastname" />
    
   </div>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
+  <div className="form-group col-3">
+    <label htmlFor="emai">Email address</label>
     <input 
     value={email}
     onChange={(e)=>setEmail(e.target.value)}
-    type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+    type="text" className="form-control" id="emai" aria-describedby="emailHelp" placeholder="Enter email" />
    
   </div>
 
- 
+  <div className="col-3">
   <button type="submit" className="btn btn-primary mt-2">Submit</button>
+  </div>
 </form>
 
 <ResponseMessage response={responseData} />

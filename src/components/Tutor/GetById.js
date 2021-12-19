@@ -29,19 +29,20 @@ export default function GetByIdTutor() {
         <div>
             <h1>Get Tutor</h1>
             <form onSubmit={formSubmit}>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Id</label>
+  <div className="form-group col-3">
+    <label htmlFor="id">Id</label>
     <input type="number"
     value={id}
     onChange={(e)=>setId(e.target.value)}
-    class="form-control" id="exampleInputEmail1" 
+    className="form-control" id="id" 
     aria-describedby="emailHelp" placeholder="Enter Id" />
    
   </div>
 
 
- 
+  <div className="col-3">
   <button type="submit" className="btn btn-primary mt-2">Get</button>
+  </div>
 </form>
 
 <div className="mt-5">

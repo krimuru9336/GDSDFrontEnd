@@ -42,8 +42,6 @@ export const TutorTable = ({data,onDeleteClick, onEditClick}) => {
         dataIndex: '',
         key: 'operations',
         render: (value) => <Link
-      
-
         to={"/update/"+value.id}
       
         
@@ -61,6 +59,7 @@ export const TutorTable = ({data,onDeleteClick, onEditClick}) => {
         columns={columns}
         data={data}
         tableLayout="auto"
+        rowKey="id"
       />
     )
   };

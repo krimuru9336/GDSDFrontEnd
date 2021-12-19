@@ -23,19 +23,20 @@ export default function DeleteTutor() {
         <div>
             <h1>Delete Tutor</h1>
             <form onSubmit={formSubmit}>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Id</label>
+  <div className="form-group col-3">
+    <label htmlFor="deleteid">Id</label>
     <input type="number"
     value={id}
     onChange={(e)=>setId(e.target.value)}
-    class="form-control" id="exampleInputEmail1" 
+    className="form-control" id="deleteid" 
     aria-describedby="emailHelp" placeholder="Enter Id" />
    
   </div>
 
 
- 
+  <div className="col-3">
   <button type="submit" className="btn btn-primary mt-2">Delete</button>
+  </div>
 </form>
 
 
