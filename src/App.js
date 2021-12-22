@@ -17,6 +17,8 @@ function App() {
   return (
     <div className="App">
 <BrowserRouter>
+<h6>Fulda University of Applied Sciences Software Engineering Project, Fall 2021 For
+Demonstration Only</h6>
 <Navbar />
 
       <div className="mt-5 container">
@@ -32,6 +34,8 @@ function App() {
     </Routes>
     </div>
       </div>
+      <h6>Fulda University of Applied Sciences Software Engineering Project, Fall 2021 For
+Demonstration Only</h6>
   </BrowserRouter>
 
       
@@ -39,6 +43,7 @@ function App() {
          
         
     </div>
+    
   );
 }
 
