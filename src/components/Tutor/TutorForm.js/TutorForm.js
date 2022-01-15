@@ -1,9 +1,9 @@
 import React from "react";
-import catImage from "../Search/catImage.jpeg"
-import PersonalDescription from "./PersonalDescription";
 import { useNavigate } from 'react-router-dom';
+import defaultImage from "../../../assets/images/default.png"
+import FormComponent from "./FormComponent"
 
-export default function TutorDetail(){
+export default function TutorForm(){
     const navigate = useNavigate();
     return (
         <>
@@ -19,11 +19,13 @@ export default function TutorDetail(){
         <div className="card p-5">
         
         <div className="row">
-            <div className="col-3">
-            <img src={catImage} className="col-md-10 mb-2"/>
+            <h5 className="text-primary">Tutor Profile</h5>
+            <div className="col-3 col-md-3 mt-2">
+           <img src={defaultImage} height="120" width="120" />
+<input type="file" className="mt-2"></input>
             </div>
-            <div className="col-9">
-<PersonalDescription />
+            <div className="col-8">
+<FormComponent />
             </div>
         </div>
         <div className="row">

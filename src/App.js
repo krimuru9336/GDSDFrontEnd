@@ -14,13 +14,17 @@ import Home from './Home/Home';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
 import TutorDetail from './components/TutorDetail/TutorDetail';
-
+import TutorForm from './components/Tutor/TutorForm.js/TutorForm';
+import ChatBody from "./components/chat/components/chatBody/ChatBody";
+import React from 'react';
+import { useLocation } from "react-router-dom"
 
 function App() {
+
   return (
     <div className="App">
 <BrowserRouter>
-<Navbar />
+<Navbar/>
 
       
     <Routes>
@@ -35,6 +39,8 @@ function App() {
       <Route path="/register" element={<Signup />} />
       <Route path="/login" element={<Login />} />
       <Route path="/tutor-detail" element={<TutorDetail />} />
+      <Route path="/tutor-profile-create" element={<TutorForm />} />
+      <Route path="/messages" element={<ChatBody />} />
     </Routes>
    
   </BrowserRouter>

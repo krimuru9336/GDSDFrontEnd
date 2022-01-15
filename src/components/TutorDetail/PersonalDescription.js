@@ -8,10 +8,10 @@ export default function PersonalDescription(){
             </div>
             <div className="card-body">
             <ul className="list-group list-group-flush">
-    <li className="list-group-item">First Name</li>
-    <li className="list-group-item">Last Name</li>
-    <li className="list-group-item">Email</li>
-    <li className="list-group-item">Address</li>
+    <li className="list-group-item">First Name: Ramesh</li>
+    <li className="list-group-item">Last Name: Shah</li>
+    <li className="list-group-item">Email: ramesh.shah@informatik.hs-fulda.de</li>
+    <li className="list-group-item">Address: Leipziger str 130, 36037 Fulda</li>
   </ul>
             </div>
         </div>

@@ -2,11 +2,15 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import SignupForm from "./SignupForm";
 import axios from "axios";
+import ResponseMessage from "../../common/ResponseMessage";
 
 export default function Signup() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [profilePhoto, setProfilePhoto] = useState("")
   const [cv, setCV] = useState("")
+
+  const [responseMessage, setResponseMessage] = useState(false)
+  const [errorResponseMessage, setErrorResponseMessage] = useState(false)
 
   const handleFormSubmit = async (values) => {
     setIsSubmitting(true);
@@ -44,8 +48,6 @@ export default function Signup() {
 for ( var key in reqBody ) {
     form_data.append(key, reqBody[key]);
 }
-
-
     axios
       .post(apiEndPoint,form_data,  {
         headers: {
@@ -55,8 +57,24 @@ for ( var key in reqBody ) {
       .then((res) => {
         console.log(res);
         setIsSubmitting(false);
+       console.log(res.data)
+       if(res.data.status === "success") {
+        setResponseMessage("success")
+       } else {
+        setResponseMessage("Error")
+        setErrorResponseMessage(res.data.data)
+       }
+
+setTimeout(()=>{
+  setResponseMessage("")
+}, 3000)
+        
       })
       .catch((err) => {
+        setResponseMessage(
+          "error"
+        
+        )
         console.log(err);
         setIsSubmitting(false);
         //setResponseData("Error")
@@ -74,10 +92,15 @@ for ( var key in reqBody ) {
           <SignupForm
             handleFormSubmit={handleFormSubmit}
             isFormSubmitting={isSubmitting}
+            errorResponseMessage={errorResponseMessage}
           />
           <div className="common-text-center mt-3">
           <Link to="/login">Back To Login</Link>
           </div>
+
+          <ResponseMessage 
+          
+          response={responseMessage} />
         </div>
       </div>
       </div>

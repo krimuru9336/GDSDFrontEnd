@@ -4,12 +4,16 @@ import axios from "axios"
 import Search from "../components/Search/Search";
 import TutorsOfWeek from "../components/Tutor/TutorsOfWeek";
 import MostReviewedTutors from "../components/Tutor/MostReviewedTutors";
+import SearchResults from "../components/Tutor/SearchResults";
+import { getToken } from "../utils/utilityFunctions";
 
 export default function Home() {
     const [searchTerm, setSearchTerm] = useState("")
     const [searchResults, setSearchResults] = useState([])
     const [errMsg, setErrMsg] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
+    const [searchSubmit, setSearchSubmit] = useState(false)
+    const [allTutors, setAllTutorResults] = useState([])
     
 
     useEffect(()=>{
@@ -17,23 +21,31 @@ export default function Home() {
     },[])
 
     const fetchTableData = () => {
+      const token = getToken()
+      if(token) {
         const baseEndPoint = process.env.REACT_APP_API_END_POINT 
-        const apiEndPoint = baseEndPoint+"/api/tutor"
+        const apiEndPoint = baseEndPoint+"/api/tutor/list"
      setIsLoading(true)
-    axios.get(apiEndPoint)
+    axios.get(apiEndPoint,{
+      headers: {
+        Authorization: "Bearer "+ token
+      }
+    })
       .then(res => {
         setIsLoading(false)
-        setSearchResults(res.data)
+        setAllTutorResults(res.data)
       })
       .catch((err)=>{
         setErrMsg("Error")
         setIsLoading(false)
       })
+      }
+       
     }
 
     const onFormSubmit = (e) => {
         setSearchTerm(e.target.value)
-   
+      setSearchSubmit(e.target.value ? true : false)
         const baseEndPoint = process.env.REACT_APP_API_END_POINT   
         const apiEndPoint = baseEndPoint+"/api/tutor/?search="+e.target.value
         setIsLoading(true)
@@ -100,23 +112,25 @@ onChange={(e)=>
     onFormSubmit(e)
     }
   id="inputPassword2" placeholder="Search..." />
-   <button type="button" className="btn bg-transparent" 
-   style={{marginLeft: "-40px",zIndex: "100"}}>
-    <i className="fa fa-times"></i>
-  </button>
+  
+ 
 </div>
 </div>
 </form>
 
-
-  
-  <TutorsOfWeek />
+{searchSubmit ? <SearchResults searchResults={searchResults} /> : 
+<>
+<TutorsOfWeek tutors={allTutors} />
    {/*  {!isLoading &&
     <Search searchResults={searchResults} /> } */}
 
 
   
-  <MostReviewedTutors />
+  <MostReviewedTutors tutors={allTutors} />
+</>
+}
+  
+ 
    
 
 

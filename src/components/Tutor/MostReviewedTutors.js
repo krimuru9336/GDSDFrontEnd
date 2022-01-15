@@ -2,7 +2,7 @@ import React from "react"
 
 import TutorCard from "./TutorCard"
 
-export default function MostReviewedTutors({ searchResults}) {
+export default function MostReviewedTutors({ tutors }) {
     const data = [
         {
             id: 1,
@@ -31,8 +31,8 @@ export default function MostReviewedTutors({ searchResults}) {
         <div className="mt-4">
         <h5 className="justify-left text-primary mb-2">Most Reviewed Tutors</h5>
         <div className="row">
-    {data.length > 0 ?
-    data.map((item, index)=>{
+    {tutors.length > 0 ?
+    tutors.map((item, index)=>{
         return (
             <div
             key={item.id}

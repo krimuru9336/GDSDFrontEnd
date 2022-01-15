@@ -2,7 +2,7 @@ import React from "react"
 
 import TutorCard from "./TutorCard"
 
-export default function TutorsOfWeek({ searchResults}) {
+export default function TutorsOfWeek({ tutors}) {
     const data = [
         {
             id: 1,
@@ -22,7 +22,7 @@ export default function TutorsOfWeek({ searchResults}) {
         {
             id: 1,
             tutor_first_name: "Sanke",
-            tutor_last_name: "SuSuman"
+            tutor_last_name: "SuSuman" 
         },
 
     ]
@@ -31,8 +31,8 @@ export default function TutorsOfWeek({ searchResults}) {
         <div className="mt-4">
         <h5 className="justify-left  text-primary mb-2">Tutors of the week</h5>
         <div className="row">
-    {data.length > 0 ?
-    data.map((item, index)=>{
+    {tutors.length > 0 ?
+    tutors.map((item, index)=>{
         return (
             <div
             key={item.id}

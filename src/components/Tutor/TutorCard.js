@@ -13,10 +13,16 @@ export default function TutorCard({tutor_last_name, tutor_first_name}) {
         <div className="card">
  
   <div className="card-body common-text-center">
-    <h5 className="card-title">
-        First Name: {tutor_first_name} </h5>
-    <p className="card-text">LastName: {tutor_last_name}</p>
+   
     <img src={catImage} className="col-md-10 mb-2"/>
+    <h6 className="card-title text-primary">
+        {tutor_first_name} {tutor_last_name}</h6>
+        <div className="ratings">
+           <i className="fa fa-star rating-color"></i>
+            <i className="fa fa-star rating-color"></i> 
+            <i className="fa fa-star rating-color"></i> 
+            <i className="fa fa-star rating-color"></i> 
+            <i className="fa fa-star"></i> </div>
     <Link className="btn btn-primary" to="/tutor-detail">Enroll</Link>
   </div>
 </div>

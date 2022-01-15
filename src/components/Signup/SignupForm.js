@@ -2,7 +2,9 @@ import React from "react";
 import { Formik } from "formik";
 import { initialValues, schemaValidation } from "./schema";
 
-export default function SignupForm({ handleFormSubmit, isFormSubmitting }) {
+
+
+export default function SignupForm({ handleFormSubmit, isFormSubmitting, errorResponseMessage }) {
   const roleOptions = [
     {
       label: "Student",
@@ -13,6 +15,13 @@ export default function SignupForm({ handleFormSubmit, isFormSubmitting }) {
       value: "tutor",
     },
   ];
+
+  const ErrorContent = (touched, fieldName) => {
+    return errorResponseMessage && touched[fieldName] ? 
+    <div className="text-danger">{errorResponseMessage[fieldName]}</div> : ""
+   
+  }
+
   return (
     <>
       <Formik
@@ -43,90 +52,6 @@ export default function SignupForm({ handleFormSubmit, isFormSubmitting }) {
               }}
               autoComplete="off"
             >
-              <div className="form-outline mb-4">
-                <input
-                  id="first_name"
-                  placeholder="First Name"
-                  type="text"
-                  value={values.first_name}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={"form-control"}
-                />
-                {errors.first_name && touched.first_name && (
-                  <div className="text-danger">{errors.first_name}</div>
-                )}
-              </div>
-              <div className="form-outline mb-4">
-                <input
-                  id="last_name"
-                  placeholder="Last Name"
-                  type="text"
-                  value={values.last_name}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={"form-control"}
-                />
-                {errors.last_name && touched.last_name && (
-                  <div className="text-danger">{errors.last_name}</div>
-                )}
-              </div>
-              <div className="form-outline mb-4">
-                <input
-                  id="email"
-                  placeholder="Enter your email"
-                  type="text"
-                  value={values.email}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={"form-control"}
-                />
-                {errors.email && touched.email && (
-                  <div className="text-danger">{errors.email}</div>
-                )}
-              </div>
-              <div className="form-outline mb-4">
-                <input
-                  id="address"
-                  placeholder="Address"
-                  type="text"
-                  value={values.address}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={"form-control"}
-                />
-                {errors.address && touched.address && (
-                  <div className="text-danger">{errors.address}</div>
-                )}
-              </div>
-              <div className="form-outline mb-4">
-                <input
-                  id="phone"
-                  placeholder="Phone"
-                  type="number"
-                  value={values.phone}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={"form-control"}
-                />
-                {errors.phone && touched.phone && (
-                  <div className="text-danger">{errors.phone}</div>
-                )}
-              </div>
-              <div className="form-outline mb-4">
-                <input
-                  id="dob"
-                  placeholder="DOB"
-                  type="date"
-                  value={values.dob}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={"form-control"}
-                />
-                {errors.dob && touched.dob && (
-                  <div className="text-danger">{errors.dob}</div>
-                )}
-              </div>
               <div className="form-outline form-group mb-4">
                 <label className="form-label">Sign up as</label>
                 <select id="role" name="role"
@@ -144,7 +69,100 @@ export default function SignupForm({ handleFormSubmit, isFormSubmitting }) {
                 {errors.role && touched.role && (
                   <div className="text-danger">{errors.role}</div>
                 )}
+                
               </div>
+              <div className="form-outline mb-4">
+                <input
+                  id="first_name"
+                  placeholder="First Name"
+                  type="text"
+                  value={values.first_name}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className={"form-control"}
+                />
+                {errors.first_name && touched.first_name && (
+                  <div className="text-danger">{errors.first_name}</div>
+                )}
+                {ErrorContent(touched, "first_name")}
+              </div>
+              <div className="form-outline mb-4">
+                <input
+                  id="last_name"
+                  placeholder="Last Name"
+                  type="text"
+                  value={values.last_name}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className={"form-control"}
+                />
+                {errors.last_name && touched.last_name && (
+                  <div className="text-danger">{errors.last_name}</div>
+                )}
+                {ErrorContent(touched, "last_name")}
+              </div>
+              <div className="form-outline mb-4">
+                <input
+                  id="email"
+                  placeholder="Enter your email"
+                  type="text"
+                  value={values.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className={"form-control"}
+                />
+                {errors.email && touched.email && (
+                  <div className="text-danger">{errors.email}</div>
+                )}
+              </div>
+              {ErrorContent(touched, "email")}
+              <div className="form-outline mb-4">
+                <input
+                  id="address"
+                  placeholder="Address"
+                  type="text"
+                  value={values.address}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className={"form-control"}
+                />
+                {errors.address && touched.address && (
+                  <div className="text-danger">{errors.address}</div>
+                )}
+                {ErrorContent(touched, "address")}
+              </div>
+              <div className="form-outline mb-4">
+                <input
+                  id="phone"
+                  placeholder="Phone"
+                  type="number"
+                  value={values.phone}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className={"form-control"}
+                />
+                {errors.phone && touched.phone && (
+                  <div className="text-danger">{errors.phone}</div>
+                )}
+                {ErrorContent(touched, "phone_number")}
+              </div>
+              <div className="form-outline mb-4">
+                <input
+                  id="dob"
+                  placeholder="DOB"
+                  type="date"
+                  value={values.dob}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className={"form-control"}
+                />
+                {errors.dob && touched.dob && (
+                  <div className="text-danger">{errors.dob}</div>
+                )}
+                {ErrorContent(touched, "dob")}
+              </div>
+              
+              {values.role === "tutor" &&
               <div className="form-outline mb-4">
               <label htmlFor="cv" className="form-label">CV</label>
                 <input
@@ -163,7 +181,9 @@ export default function SignupForm({ handleFormSubmit, isFormSubmitting }) {
                 {errors.cv && touched.cv && (
                   <div className="text-danger">{errors.cv}</div>
                 )}
+                {ErrorContent(touched, "CV")}
               </div>
+        }
               <div className="form-outline mb-4">
               <label htmlFor="profile_pic" className="form-label">Profile Picture</label>
                 <input
@@ -181,6 +201,7 @@ export default function SignupForm({ handleFormSubmit, isFormSubmitting }) {
                 {errors.profile_pic && touched.profile_pic && (
                   <div className="text-danger">{errors.profile_pic}</div>
                 )}
+                {ErrorContent(touched, "profile_pic")}
               </div>
               <div className="form-outline mb-4">
                 <input
@@ -195,6 +216,7 @@ export default function SignupForm({ handleFormSubmit, isFormSubmitting }) {
                 {errors.password && touched.password && (
                   <div className="text-danger">{errors.password}</div>
                 )}
+                {ErrorContent(touched, "password")}
               </div>
               <div className="form-outline mb-4">
                 <input

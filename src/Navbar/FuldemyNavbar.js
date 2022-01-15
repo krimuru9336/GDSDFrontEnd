@@ -1,8 +1,27 @@
-import React from "react"
+import React, {useEffect, useState} from "react"
 import {Link} from "react-router-dom"
 
 export default function Navbar(){
-  
+   
+
+    const isUserLoggedId  = () => {
+        const accessToken = localStorage.getItem("token")
+        if(accessToken) {
+            return true
+    
+        } else {
+          return false
+        }
+    }
+    
+    
+
+    const onLogout = () => {
+        localStorage.removeItem("token")
+        
+    }
+    const isLoggedIn = isUserLoggedId()
+    
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           {/* <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
@@ -25,6 +44,9 @@ export default function Navbar(){
             </li>
         </ul>
     </div> */}
+
+
+  
     <div class="container-fluid">
         <Link className="navbar-brand" style={{marginLeft: "20px"}} to="/">Fuldemy</Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,7 +57,25 @@ export default function Navbar(){
                
             </ul>
             <ul className="navbar-nav">
-            <li className="nav-item">
+            
+                {!isLoggedIn ? 
+            <>
+          {/*   <li className="nav-item">
+        <Link className="nav-link" to="/add-tutor">Add Tutor</Link>
+      </li>
+      <li className="nav-item">
+        <Link className="nav-link" to="/delete">Delete</Link>
+      </li>
+      <li className="nav-item">
+        <Link className="nav-link" to="/get-by-id">Get By Id</Link>
+      </li>
+      <li className="nav-item">
+        <Link className="nav-link" to="/update">Update</Link>
+      </li>
+      <li className="nav-item">
+        <Link className="nav-link" to="/get-all">Get All</Link>
+      </li> */}
+ <li className="nav-item">
                     <Link class="nav-link" to="/login">
                       Login
                       </Link>
@@ -45,6 +85,27 @@ export default function Navbar(){
                       Sign Up
                       </Link>
                 </li>
+            </> : 
+            
+            <>
+<li className="nav-item">
+                    <Link class="nav-link" to="/messages">
+                      My Messages
+                      </Link>
+                </li>
+                
+                <li
+                onClick={()=>onLogout()}
+                className="nav-item">
+                    <Link
+                    onClick={()=>onLogout()}
+                    class="nav-link" to="/login">
+                      Logout
+                      </Link>
+                </li>
+            </>
+            }
+           
             </ul>
         </div>
     </div>
