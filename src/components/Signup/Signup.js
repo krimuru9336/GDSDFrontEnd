@@ -83,7 +83,7 @@ setTimeout(()=>{
 
   return (
     <>
-      <div className="mt-5 container col-4 mb-5">
+      <div className="mt-5 container col-md-4 col-sm-10 mb-5">
         <div className="card p-5">
       <div className="h-100 row align-items-center">
         <div className="col-md-12 col-sm-12 ">

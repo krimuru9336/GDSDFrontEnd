@@ -18,6 +18,7 @@ import TutorForm from './components/Tutor/TutorForm.js/TutorForm';
 import ChatBody from "./components/chat/components/chatBody/ChatBody";
 import React from 'react';
 import { useLocation } from "react-router-dom"
+import TutorProfile from './components/TutorProfile/TutorProfile';
 
 function App() {
 
@@ -41,6 +42,7 @@ function App() {
       <Route path="/tutor-detail" element={<TutorDetail />} />
       <Route path="/tutor-profile-create" element={<TutorForm />} />
       <Route path="/messages" element={<ChatBody />} />
+      <Route path="/my-profile" element={<TutorProfile />} />
     </Routes>
    
   </BrowserRouter>

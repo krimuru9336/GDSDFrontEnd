@@ -44,7 +44,7 @@ localStorage.setItem("token", res.data.access)
 
     return (
         <>
-        <div className="mt-5 container col-3">
+        <div className="mt-5 container col-md-3 col-sm-9">
         <div className="card p-5">
 <div className="h-100 row align-items-center">
   <div className="col-md-12 col-sm-12 ">
