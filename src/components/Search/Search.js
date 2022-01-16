@@ -10,7 +10,7 @@ export default function Search({ searchResults}) {
         return (
             <div
             key={item.id}
-            className="col-3 mb-2"
+            className="col-md-3 mb-2 col-sm-12"
             >
                 <SearchCard 
                 tutor_first_name={item.tutor_first_name}

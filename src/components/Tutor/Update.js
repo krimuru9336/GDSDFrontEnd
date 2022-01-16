@@ -53,7 +53,7 @@ axios.get(apiEndPoint)
             <h1>Update Tutor</h1>
             <form onSubmit={formSubmit}>
   
-  <div className="form-group col-3">
+  <div className="form-group  col-md-3 col-sm-12">
     <label htmlFor="id">Id</label>
     <input type="number"
     value={id}
@@ -61,7 +61,7 @@ axios.get(apiEndPoint)
     className="form-control" id="id" 
     aria-describedby="emailHelp" placeholder="Enter Id" />
   </div>
-  <div className="form-group col-3">
+  <div className="form-group  col-md-3 col-sm-12">
     <label htmlFor="fname">FirstName</label>
     <input type="text"
     value={firstname}
@@ -69,7 +69,7 @@ axios.get(apiEndPoint)
     className="form-control" id="fname" aria-describedby="emailHelp" placeholder="Enter firstname" />
    
   </div>
-  <div className="form-group col-3">
+  <div className="form-group  col-md-3 col-sm-12">
     <label htmlFor="lname">LastName</label>
     <input 
     value={lastname}
@@ -77,7 +77,7 @@ axios.get(apiEndPoint)
     type="text" className="form-control" id="lname" aria-describedby="emailHelp" placeholder="Enter lastname" />
    
   </div>
-  <div className="form-group col-3">
+  <div className="form-group  col-md-3 col-sm-12">
     <label htmlFor="emai">Email address</label>
     <input 
     value={email}
@@ -86,7 +86,7 @@ axios.get(apiEndPoint)
    
   </div>
 
-  <div className="col-3">
+  <div className=" col-md-3 col-sm-12">
   <button type="submit" className="btn btn-primary mt-2">Submit</button>
   </div>
 </form>

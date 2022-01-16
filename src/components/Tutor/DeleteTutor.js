@@ -23,7 +23,7 @@ export default function DeleteTutor() {
         <div>
             <h1>Delete Tutor</h1>
             <form onSubmit={formSubmit}>
-  <div className="form-group col-3">
+  <div className="form-group col-md-3 col-sm-12">
     <label htmlFor="deleteid">Id</label>
     <input type="number"
     value={id}
@@ -34,7 +34,7 @@ export default function DeleteTutor() {
   </div>
 
 
-  <div className="col-3">
+  <div className=" col-md-3 col-sm-12">
   <button type="submit" className="btn btn-primary mt-2">Delete</button>
   </div>
 </form>

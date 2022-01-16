@@ -7,6 +7,7 @@ export default function AddTutor() {
     const [lastname, setLastname] = useState("")
     const [email, setEmail] = useState("")
     const [responseData, setResponseData] = useState(null)
+   // const [imgFile, setImgFile] = useState("")
    
 
 
@@ -31,7 +32,7 @@ export default function AddTutor() {
         <div>
             <h1>Add Tutor</h1>
             <form onSubmit={formSubmit}>
-  <div className="form-group col-3">
+  <div className="form-group col-sm-12 col-md-3">
     <label htmlFor="fname" className="form-label">FirstName</label>
     <input type="text"
     value={firstname}
@@ -39,7 +40,7 @@ export default function AddTutor() {
     className="form-control" id="fname" aria-describedby="emailHelp" placeholder="Enter firstname" />
    
   </div>
-  <div className="form-group col-3">
+  <div className="form-group col-3 col-sm-12 col-md-3">
     <label htmlFor="lname">LastName</label>
     <input 
     value={lastname}
@@ -47,7 +48,7 @@ export default function AddTutor() {
     type="text" className="form-control" id="lname" aria-describedby="emailHelp" placeholder="Enter lastname" />
    
   </div>
-  <div className="form-group col-3">
+  <div className="form-group col-sm-12 col-md-3">
     <label htmlFor="em">Email address</label>
     <input 
     value={email}
@@ -55,8 +56,18 @@ export default function AddTutor() {
     type="text" className="form-control" id="em" aria-describedby="emailHelp" placeholder="Enter email" />
    
   </div>
+ {/*  <div className="form-group col-3">
+    <label htmlFor="image-file">Image</label>
+    <input 
+    value={imgFile}
+    onChange={(e)=>setImgFile(e.target.file)}
+    type="file" className="form-control" id="image-file"
+    accept="image/png, image/jpeg"
+     aria-describedby="emailHelp" />
+   
+  </div> */}
 
-<div className="col-3">
+<div className="col-sm-6 col-xl-12">
   <button type="submit" className="btn btn-primary mt-2">Submit</button>
   </div>
 </form>
