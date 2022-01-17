@@ -1,6 +1,7 @@
 import React, { useState} from "react"
 import axios from "axios"
 import ResponseMessage from "../../common/ResponseMessage"
+import Navbar from "../../Navbar/FuldemyNavbar"
 
 export default function AddTutor() {
     const [firstname, setFirstname] = useState("")
@@ -29,6 +30,8 @@ export default function AddTutor() {
       })
     }
     return (
+      <>
+      <Navbar/>
         <div>
             <h1>Add Tutor</h1>
             <form onSubmit={formSubmit}>
@@ -76,5 +79,6 @@ export default function AddTutor() {
     <ResponseMessage response={responseData} />
 
         </div>
+        </>
     )
 }

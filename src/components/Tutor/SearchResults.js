@@ -55,8 +55,7 @@ export default function SearchResults({ searchResults}) {
             className="col-md-3 mb-2 col-sm-12"
             >
                 <TutorCard
-                tutor_first_name={item.first_name}
-                tutor_last_name={item.last_name}
+                tutorDetail={item}
                 />
             </div>
         )

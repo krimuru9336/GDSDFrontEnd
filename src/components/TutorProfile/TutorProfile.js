@@ -4,6 +4,7 @@ import TutorProfileForm from "./TutorProfileForm"
 import axios from "axios"
 import { useNavigate } from 'react-router-dom';
 import TutorDetail from "./TutorDetail";
+import Navbar from "../../Navbar/FuldemyNavbar";
 
 export default function TutorProfile(){
     const navigate = useNavigate();
@@ -40,6 +41,7 @@ export default function TutorProfile(){
 
     return (
         <>
+        <Navbar />
         <div className="mt-5 container">
              <div className="d-flex flex-row-reverse mb-2">
            

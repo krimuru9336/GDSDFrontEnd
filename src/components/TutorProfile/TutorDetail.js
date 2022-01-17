@@ -39,14 +39,7 @@ export default function TutorDetail({onEditClick, tutorData}){
         </div>
             </div>
         </div>
-        <div className="row">
-            <div className="col-6">
-           Other
-            </div>
-            <div className="col-6">
-Academic
-            </div>
-        </div>
+        
         </div>
     )
 }

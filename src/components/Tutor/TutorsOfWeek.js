@@ -39,8 +39,7 @@ export default function TutorsOfWeek({ tutors}) {
             className="col-md-3 mb-2 col-sm-12"
             >
                 <TutorCard
-                tutor_first_name={item.tutor_first_name}
-                tutor_last_name={item.tutor_last_name}
+               tutorDetail={item}
                 />
             </div>
         )

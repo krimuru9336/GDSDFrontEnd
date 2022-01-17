@@ -8,10 +8,10 @@ export const initialValues = {
     confirmPassword: "",
     address: "",
     dob:"",
-    phone:"",
-    role:"student",
+    phone_number:"",
     profile_pic: "",
-    cv:""
+    cv:"",
+    skills_present: ""
 }
 
 export const schemaValidation =  yup.object().shape({
@@ -26,10 +26,12 @@ export const schemaValidation =  yup.object().shape({
       ),
     first_name: yup.string().required("First Name is required"),
     last_name: yup.string().required("Last Name is required"),
-    phone: yup.number().required("Phone is required"),
+    phone_number: yup.number().required("Phone is required"),
+    address: yup.string().required("Address is required"),
   confirmPassword: yup.string()
     .required("Confirm Password is required")
     .oneOf([yup.ref("password")], "Password did not match")
     .min(8, "Minimum 8 characters allowed")
     .max(40, "Maximum 40 characters allowed"),
+    skills_present: yup.array().nullable(),
   });
