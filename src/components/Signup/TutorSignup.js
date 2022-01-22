@@ -4,18 +4,8 @@ import { initialValues, schemaValidation } from "./schema";
 import Select from 'react-select'
 
 
-export default function SignupForm({ handleFormSubmit, isFormSubmitting, errorResponseMessage, skillOptions }) {
+export default function TutorSignupForm({ handleFormSubmit, isFormSubmitting, errorResponseMessage, skillOptions }) {
 
-  const roleOptions = [
-    {
-      label: "Student",
-      value: "student",
-    },
-    {
-      label: "Tutor",
-      value: "tutor",
-    },
-  ];
   
 
   const ErrorContent = (touched, fieldName) => {
@@ -30,7 +20,7 @@ export default function SignupForm({ handleFormSubmit, isFormSubmitting, errorRe
         initialValues={initialValues}
         validationSchema={schemaValidation}
         onSubmit={(values) => {
-          handleFormSubmit(values);
+          handleFormSubmit(values, "tutor");
         }}
       >
         {(props) => {
@@ -54,25 +44,7 @@ export default function SignupForm({ handleFormSubmit, isFormSubmitting, errorRe
               }}
               autoComplete="off"
             >
-              <div className="form-outline form-group mb-4">
-                <label className="form-label">Sign up as</label>
-                <select id="role" name="role"
-                  value={values.role}
-                  onChange={handleChange}
-                className="form-control">
-                  {roleOptions.map((item, index) => {
-                    return (
-                      <option value={item.value} key={index}>
-                        {item.label}
-                      </option>
-                    );
-                  })}
-                </select>
-                {errors.role && touched.role && (
-                  <div className="text-danger">{errors.role}</div>
-                )}
-                
-              </div>
+              
               <div className="form-outline mb-4">
                 <input
                   id="first_name"
@@ -166,7 +138,7 @@ export default function SignupForm({ handleFormSubmit, isFormSubmitting, errorRe
                 )}
                 {ErrorContent(touched, "dob")}
               </div>
-              {values.role === "tutor" &&
+            
               <div className="form-outline mb-4">
               <label htmlFor="skills" className="form-label">Skills</label>
               <Select options={skillOptions} isMulti 
@@ -179,8 +151,7 @@ export default function SignupForm({ handleFormSubmit, isFormSubmitting, errorRe
                 )}
                 {ErrorContent(touched, "skills_present")}
               </div>
-        }
-              {values.role === "tutor" &&
+       
               <div className="form-outline mb-4">
               <label htmlFor="cv" className="form-label">CV</label>
                 <input
@@ -201,7 +172,7 @@ export default function SignupForm({ handleFormSubmit, isFormSubmitting, errorRe
                 )}
                 {ErrorContent(touched, "CV")}
               </div>
-        }
+        
               <div className="form-outline mb-4">
               <label htmlFor="profile_pic" className="form-label">Profile Picture</label>
                 <input

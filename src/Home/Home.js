@@ -6,6 +6,7 @@ import TutorsOfWeek from "../components/Tutor/TutorsOfWeek";
 import MostReviewedTutors from "../components/Tutor/MostReviewedTutors";
 import SearchResults from "../components/Tutor/SearchResults";
 import { getToken } from "../utils/utilityFunctions";
+import Navbar from "../Navbar/FuldemyNavbar";
 
 export default function Home() {
     const [searchTerm, setSearchTerm] = useState("")
@@ -21,15 +22,13 @@ export default function Home() {
     },[])
 
     const fetchTableData = () => {
-      const token = getToken()
-      if(token) {
+      
+     
         const baseEndPoint = process.env.REACT_APP_API_END_POINT 
-        const apiEndPoint = baseEndPoint+"/api/tutor/list"
+        const apiEndPoint = baseEndPoint+"/api/tutor"
      setIsLoading(true)
     axios.get(apiEndPoint,{
-      headers: {
-        Authorization: "Bearer "+ token
-      }
+     
     })
       .then(res => {
         setIsLoading(false)
@@ -39,7 +38,7 @@ export default function Home() {
         setErrMsg("Error")
         setIsLoading(false)
       })
-      }
+   
        
     }
 
@@ -86,6 +85,8 @@ export default function Home() {
     ]
 
     return (
+      <>
+      <Navbar/>
         <div>
 {/* 
 <h2>Welcome To Fuldemy</h2> */}
@@ -138,5 +139,6 @@ onChange={(e)=>
             </div>
             </div>
             </div>
+            </>
     )
 }

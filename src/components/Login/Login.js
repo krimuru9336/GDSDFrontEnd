@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "axios"
 import ResponseMessage from "../../common/ResponseMessage";
 import { useNavigate } from 'react-router-dom';
+import Navbar from "../../Navbar/FuldemyNavbar";
 
 export default function Login(){
   const [isSubmitting, setIsSubmitting]= useState(false)
@@ -44,7 +45,8 @@ localStorage.setItem("token", res.data.access)
 
     return (
         <>
-        <div className="mt-5 container col-3">
+         <Navbar />
+        <div className="mt-5 container col-md-3 col-sm-9">
         <div className="card p-5">
 <div className="h-100 row align-items-center">
   <div className="col-md-12 col-sm-12 ">

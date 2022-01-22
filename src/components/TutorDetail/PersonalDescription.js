@@ -1,6 +1,7 @@
 import React from "react"
 
-export default function PersonalDescription(){
+export default function PersonalDescription({tutorDetail }){
+    console.log(tutorDetail)
     return (
         <div className="card">
             <div className="card-header">
@@ -8,10 +9,10 @@ export default function PersonalDescription(){
             </div>
             <div className="card-body">
             <ul className="list-group list-group-flush">
-    <li className="list-group-item">First Name: Ramesh</li>
-    <li className="list-group-item">Last Name: Shah</li>
-    <li className="list-group-item">Email: ramesh.shah@informatik.hs-fulda.de</li>
-    <li className="list-group-item">Address: Leipziger str 130, 36037 Fulda</li>
+    <li className="list-group-item">First Name: {tutorDetail?.first_name}</li>
+    <li className="list-group-item">Last Name: {tutorDetail?.last_name}</li>
+    <li className="list-group-item">Email: {tutorDetail?.email}</li>
+    <li className="list-group-item">Skills: {tutorDetail?.skills_text}</li>
   </ul>
             </div>
         </div>

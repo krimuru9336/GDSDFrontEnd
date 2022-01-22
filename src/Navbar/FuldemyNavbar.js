@@ -93,7 +93,11 @@ export default function Navbar(){
                       My Messages
                       </Link>
                 </li>
-                
+                <li className="nav-item">
+                <Link class="nav-link" to="/my-profile">
+                      My Profile
+                      </Link>
+                </li>
                 <li
                 onClick={()=>onLogout()}
                 className="nav-item">
