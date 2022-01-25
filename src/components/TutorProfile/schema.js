@@ -8,17 +8,26 @@ export const initialValues = {
     address: "",
     DOB:"",
     phone_number:"",
-  
-    profile_pic: "",
-    cv:""
+    profileImage: "",
+    cv:"",
+    passwordNew: "",
+    skillsNew: ""
 }
 
 export const schemaValidation =  yup.object().shape({
-    email: yup.string().required("Email is required")
-        .email("Enter valid email"),
-    password: yup.string().required("Password is required")
-    .min(8, "Minimum 8 characters allowed")
-    .max(40, "Maximum 40 characters allowed"),
+  /*   email: yup.string().required("Email is required")
+        .email("Enter valid email").test(
+            'hs-email',
+            'Only Hochshule Fulda email allowed',
+            function(value) {
+             
+                if(value?.includes("hs-fulda")){
+                return true
+            } else {
+              return false
+            }
+            }
+          ), */
     first_name: yup.string().required("First Name is required"),
     last_name: yup.string().required("Last Name is required"),
     phone_number: yup.number().required("Phone is required"),

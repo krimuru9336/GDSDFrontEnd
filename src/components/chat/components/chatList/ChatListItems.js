@@ -20,7 +20,7 @@ export default class ChatListItems extends Component {
     return (
       <div
         style={{ animationDelay: `0.${this.props.animationDelay}s` }}
-        onClick={this.selectChat}
+        onClick={this.props.onSelectuserClick}
         className={`chatlist__item ${
           this.props.active ? this.props.active : ""
         } `}

@@ -1,9 +1,146 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { initialValues } from "./schema";
 import defaultImage from "../../assets/images/default.png"
 import FormComponent from "./FormComponent"
+import ResponseMessage from "../../common/ResponseMessage";
+import axios from "axios"
+import { getToken } from "../../utils/utilityFunctions";
+import moment from "moment"
 
 export default function TutorProfileForm({onEditClickClose, tutorData}){
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [profilePhoto, setProfilePhoto] = useState("")
+    const [cv, setCV] = useState("")
+    const [responseMessage, setResponseMessage] = useState(false)
+    const [errorResponseMessage, setErrorResponseMessage] = useState(false)
+    const [skillOptions, setSkillOptions] = useState([])
+
+
+    useEffect(()=>{
+        fetchSkills()
+    },[])
+
+    const fetchSkills = () => {
+        const baseEndPoint = process.env.REACT_APP_API_END_POINT 
+        const apiEndPoint = baseEndPoint+"/api/skills"
+    
+    axios.get(apiEndPoint,{
+    })
+      .then(res => {
+      
+       if(res.data) {
+       
+           let formattedData = res.data.map((i)=>{
+             return {
+               label: i.skill_name,
+               value: i.id
+             }
+           })
+           setSkillOptions(formattedData)
+        
+       }
+      })
+      .catch((err)=>{
+       
+     
+      })
+    
+       
+    }
+
+    const { profile_pic }  = tutorData?.data
+    const profileImage = profile_pic ?
+    profile_pic.includes("/api") ? defaultImage : 
+    process.env.REACT_APP_API_END_POINT+"/api"+profile_pic : defaultImage
+
+
+
+    const handleFormSubmit = (values) => {
+            setIsSubmitting(true);
+            const {
+              email,
+              passwordNew,
+              address,
+              first_name,
+              last_name,
+              phone_number,
+              DOB,
+              cv,
+              profileImage,
+            
+              skillsNew
+            } = values;
+            const token = getToken()
+            const baseEndPoint = process.env.REACT_APP_API_END_POINT;
+            const apiEndPoint = baseEndPoint + "/api/user/detail"
+              const reqBody = {
+                email: email,
+                address: address,
+                last_name: last_name,
+                first_name: first_name,
+                phone_number: phone_number,
+                DOB: moment(DOB).format("YYYY-MM-DD"),
+              } 
+              if(cv) {
+                reqBody.CV = cv
+              }
+              if(profileImage) {
+                reqBody.profile_pic = profileImage
+              }
+              if(passwordNew){
+                  reqBody.password = passwordNew
+              }
+             
+            
+              
+              const form_data = new FormData();
+        
+        for ( var key in reqBody ) {
+            form_data.append(key, reqBody[key]);
+            
+        }
+        
+        const skills_presentArr = skillsNew ? skillsNew.map(i=>i.value): []
+        
+        
+        for(let skillId of skills_presentArr) {
+          form_data.append('skills_present', skillId);
+        }
+            axios
+              .patch(apiEndPoint,form_data,  {
+                headers: {
+                    "Content-type": "multipart/form-data",
+            
+                        Authorization: "Bearer "+ token
+                      
+                },                    
+            } )
+              .then((res) => {
+                console.log(res);
+                setIsSubmitting(false);
+               console.log(res.data)
+               if(res.data.data) {
+                setResponseMessage("success")
+           
+                
+               }
+        
+        setTimeout(()=>{
+          setResponseMessage("")
+        }, 3000)
+                
+              })
+              .catch((err) => {
+                setResponseMessage(
+                  "error"
+                
+                )
+                console.log(err);
+                setIsSubmitting(false);
+                //setResponseData("Error")
+              }); 
+    }
+
     return (
         <>
         <div className="card p-5">
@@ -15,16 +152,16 @@ export default function TutorProfileForm({onEditClickClose, tutorData}){
              Cancel
            </button>
        </div>
-        <div className="row">
-            <h5 className="text-primary">Update Tutor Profile</h5>
-            <div className="col-3 col-md-3 mt-2">
-           <img src={defaultImage} height="120" width="120" />
-<input type="file" className="mt-2"></input>
-            </div>
-            <div className="col-8">
-<FormComponent formData={tutorData?.data} />
-            </div>
-        </div>
+        
+           
+            
+<FormComponent 
+handleFormSubmit={handleFormSubmit}
+formData={tutorData?.data}
+errorResponseMessage={errorResponseMessage}
+skillOptions={skillOptions}
+/>
+         
         {/* <div className="row">
             <div className="col-6">
            Other
@@ -33,6 +170,9 @@ export default function TutorProfileForm({onEditClickClose, tutorData}){
 Academic
             </div>
         </div> */}
+         <ResponseMessage 
+          
+          response={responseMessage} />
         </div>
        
         </>

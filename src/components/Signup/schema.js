@@ -16,7 +16,20 @@ export const initialValues = {
 
 export const schemaValidation =  yup.object().shape({
     email: yup.string().required("Email is required")
-        .email("Enter valid email"),
+        .email("Enter valid email")
+        .test(
+          'hs-email',
+          'Only Hochshule Fulda email allowed',
+          function(value) {
+            /* if(value.indexOf("@hs-fulda.com", value.length - "@hs-fulda.com".length) !== -1){ */
+              if(value?.includes("hs-fulda")){
+              return true
+          } else {
+            return false
+          }
+          }
+        )
+       ,
     password: yup.string().required("Password is required")
     .min(8, "Minimum 8 characters allowed")
     .max(40, "Maximum 40 characters allowed")
