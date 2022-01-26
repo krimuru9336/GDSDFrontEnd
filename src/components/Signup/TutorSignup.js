@@ -148,7 +148,7 @@ export default function TutorSignupForm({ handleFormSubmit, isFormSubmitting, er
                   onChange={handleChange}
                   onBlur={handleBlur}
                   className={"form-control"}
-                  max={new Date()}
+                  max='2006-12-31'
                 />
                 {errors.dob && touched.dob && (
                   <div className="text-danger">{errors.dob}</div>
