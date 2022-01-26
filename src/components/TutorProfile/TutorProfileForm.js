@@ -49,9 +49,7 @@ export default function TutorProfileForm({onEditClickClose, tutorData}){
     }
 
     const { profile_pic }  = tutorData?.data
-    const profileImage = profile_pic ?
-    profile_pic.includes("/api") ? defaultImage : 
-    process.env.REACT_APP_API_END_POINT+"/api"+profile_pic : defaultImage
+    const profileImage = profile_pic ? profile_pic : defaultImage
 
 
 

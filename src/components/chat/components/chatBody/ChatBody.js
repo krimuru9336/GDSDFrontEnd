@@ -85,8 +85,8 @@ export default class ChatBody extends Component {
        console.log(message)
 
 this.chatSocket.send(JSON.stringify({
-  'email': "dipesh.chaudhary@gmail.com",
-  'receipient': "ram@gmail.com",
+  'email': "",
+  'receipient': "",
           'body': message
       }));
       
@@ -95,7 +95,7 @@ this.chatSocket.send(JSON.stringify({
     configureApiCall = () => {
       this.interval = setInterval(()=>{
 this.fetchMessagesForLoggedInUser()
-      }, 1000)
+      }, 800)
     }
     
 
@@ -230,8 +230,10 @@ clearInterval(this.interval)
 
 
   render() {
+ 
    const {messages,loggedInUserDetail ,filteredUsers, selectedUser, isFetching} = this.state
-    return (
+  
+   return (
       <>
        <Navbar />
      

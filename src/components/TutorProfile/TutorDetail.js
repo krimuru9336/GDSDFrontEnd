@@ -3,15 +3,11 @@ import defaultImage from "../../assets/images/default.png"
 
 export default function TutorDetail({onEditClick, tutorData}){
     const { first_name, last_name,email , address, phone_number, DOB
-    , skills_text, profile_pic, CV
+    , skills_text, profile_pic, CV, is_teacher
     } = tutorData.data
-   const profileImage = profile_pic ?
-   profile_pic.includes("/api") ? defaultImage : 
-   process.env.REACT_APP_API_END_POINT+"/api"+profile_pic : defaultImage
+   const profileImage = profile_pic ? profile_pic: defaultImage 
    
-   const cvFormattedText = CV ?
-   profile_pic.includes("/api") ? CV : 
-   process.env.REACT_APP_API_END_POINT+"/api"+CV : null
+   const cvFormattedText = CV ? CV  : null
 
    
 
@@ -46,9 +42,10 @@ export default function TutorDetail({onEditClick, tutorData}){
     <li className="list-group-item">Phone Number: {phone_number}</li>
     <li className="list-group-item">DOB: {DOB}</li>
     <li className="list-group-item">Skills: {skills_text}</li>
+    {is_teacher &&
     <li className="list-group-item">CV: {cvFormattedText ? <a 
     target="_blank"
-    href={cvFormattedText}>Download</a> : "No CV"}</li>
+    href={cvFormattedText}>Download</a> : "No CV"}</li>}
   </ul>
             </div>
         </div>

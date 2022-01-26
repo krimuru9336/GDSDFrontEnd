@@ -10,9 +10,7 @@ const navigate = useNavigate()
   const imgFile1="https://dummyimage.com/300"
 
  const {last_name, first_name, profile_pic, skills_text} = tutorDetail
- const profile_Image = profile_pic ?  
- profile_pic.includes("/api") ? profile_pic : 
- profile_pic.replace("/media", "/api/media") : defaultImage
+ const profile_Image = profile_pic ? profile_pic :  defaultImage
     return (
         
         <div className="card"

@@ -25,12 +25,9 @@ setSelectedUserDetail(selectedUser)
       },[selectedUser])
 
 
-const loggedInUserProfilePic = loggedInUserDetail?.profile_pic ?  
-loggedInUserDetail?.profile_pic.includes("/api") ? loggedInUserDetail?.profile_pic : 
-loggedInUserDetail?.profile_pic.replace("/media", "/api/media") : defaultImage
-const selectedUserProfilePic = selectedUserDetail?.profile_pic ?  
-selectedUserDetail?.profile_pic.includes("/api") ? selectedUserDetail?.profile_pic : 
-selectedUserDetail?.profile_pic.replace("/media", "/api/media") : defaultImage
+const loggedInUserProfilePic = loggedInUserDetail?.profile_pic ? loggedInUserDetail?.profile_pic : 
+defaultImage
+const selectedUserProfilePic = selectedUserDetail?.profile_pic ? selectedUserDetail?.profile_pic : defaultImage
 
   const formatMessages = () => {
     const filterdMsgForSelectedUser = messages.filter((m)=>{
@@ -44,7 +41,8 @@ selectedUserDetail?.profile_pic.replace("/media", "/api/media") : defaultImage
       loggedInUserProfilePic : selectedUserProfilePic ,
       type:m.user === loggedInUserDetail?.email ? "": "other",
       msg: m.body,
-      time: m.timestamp
+      time: m.timestamp,
+      email: m.email
       }
     }).sort((a,b)=>a.key-b.key)
     setAllMessages(newMsgList)

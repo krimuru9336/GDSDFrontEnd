@@ -12,9 +12,8 @@ export default function TutorDetail(){
     const location = useLocation()
     
     const tutorDetail = location.state ? location.state.tutorDetail : null
-    const profile_Image = tutorDetail ? tutorDetail.profile_pic ?  
-    tutorDetail.profile_pic.includes("/api") ? tutorDetail.profile_pic : 
-    tutorDetail.profile_pic.replace("/media", "/api/media") : defaultImage : defaultImage
+    const profile_Image = tutorDetail ? tutorDetail.profile_pic :
+    tutorDetail.profile_pic ?  defaultImage : defaultImage
     return (
         <>
         <Navbar />

@@ -30,29 +30,29 @@ return user.email === message.recipient || user.email === message.user
  
   const userList = filteredUserByMessages.map((user)=> {
     return  {
-      image: user.profile_pic ?  
-      user.profile_pic.includes("/api") ? user.profile_pic : 
-      user.profile_pic.replace("/media", "/api/media") : defaultImage,
+      image: user.profile_pic ? user.profile_pic : defaultImage,
       id: user.id,
       name: user.first_name+ " "+user.last_name,
       active: false,
       isOnline: true,
-      animationDelay: 0-8
+      animationDelay: 0-8,
+      email: user.email,
+      profile_pic: user.profile_pic
     }
   }
   )
 
   if(tutorDetail) {
     const user = {
-      image: tutorDetail.profile_pic ?  
-      tutorDetail.profile_pic.includes("/api") ? tutorDetail.profile_pic : 
-      tutorDetail.profile_pic.replace("/media", "/api/media") : defaultImage,
+      image: tutorDetail.profile_pic ? tutorDetail.profile_pic :defaultImage,
       id: tutorDetail.id,
       name: tutorDetail.first_name+ " "+tutorDetail.last_name,
       email: tutorDetail.email,
       active: false,
       isOnline: true,
-      animationDelay: 0.8
+      animationDelay: 0.8,
+      email: tutorDetail.email,
+      profile_pic: tutorDetail.profile_pic
     }
     // if this user is not in list, the only push
   const isUserThere = userList.filter((u)=>u.id === user.id)
@@ -69,7 +69,6 @@ return user.email === message.recipient || user.email === message.user
       onSelectUser(user)
     }
 
-   console.log("here",users)
     return (
       <div className="main__chatlist">
         {/* <button className="btn">

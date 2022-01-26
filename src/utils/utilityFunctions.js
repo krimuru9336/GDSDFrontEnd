@@ -10,8 +10,6 @@ export const isLoggedIn = () => {
 }
 
 export const getFileFormatted = (file) =>{
-    const formatted = file ?  
-    file.includes("/api") ? file : 
-    file.replace("/media", "/api/media") : defaultImage
+    const formatted = file ? file : defaultImage
     return formatted
 }
