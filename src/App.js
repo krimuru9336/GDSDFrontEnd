@@ -24,9 +24,11 @@ function App() {
 
   return (
     <div className="App">
+
+    <h6>Fulda University of Applied Sciences Software Engineering Project, Fall 2021 For
+Demonstration Only</h6>
+
 <BrowserRouter>
-
-
       
     <Routes>
        <Route path="/" element={<Home />} />
@@ -46,7 +48,6 @@ function App() {
     </Routes>
    
   </BrowserRouter>
-        
     </div>
   );
 }

@@ -43,6 +43,9 @@ export default function StudentSignupForm({ handleFormSubmit, isFormSubmitting, 
             >
               
               <div className="form-outline mb-4">
+              <label htmlFor="first_name" className="form-label">
+                  First Name
+                </label>
                 <input
                   id="first_name"
                   placeholder="First Name"
@@ -58,6 +61,9 @@ export default function StudentSignupForm({ handleFormSubmit, isFormSubmitting, 
                 {ErrorContent(touched, "first_name")}
               </div>
               <div className="form-outline mb-4">
+              <label htmlFor="last_name" className="form-label">
+                  Last Name
+                </label>
                 <input
                   id="last_name"
                   placeholder="Last Name"
@@ -73,6 +79,9 @@ export default function StudentSignupForm({ handleFormSubmit, isFormSubmitting, 
                 {ErrorContent(touched, "last_name")}
               </div>
               <div className="form-outline mb-4">
+              <label htmlFor="email" className="form-label">
+                  Email
+                </label>
                 <input
                   id="email"
                   placeholder="Enter your email"
@@ -88,6 +97,9 @@ export default function StudentSignupForm({ handleFormSubmit, isFormSubmitting, 
               </div>
               {ErrorContent(touched, "email")}
               <div className="form-outline mb-4">
+              <label htmlFor="address" className="form-label">
+                  Address
+                </label>
                 <input
                   id="address"
                   placeholder="Address"
@@ -103,6 +115,9 @@ export default function StudentSignupForm({ handleFormSubmit, isFormSubmitting, 
                 {ErrorContent(touched, "address")}
               </div>
               <div className="form-outline mb-4">
+              <label htmlFor="phone" className="form-label">
+                  Phone
+                </label>
                 <input
                   id="phone"
                   placeholder="Phone"
@@ -120,6 +135,9 @@ export default function StudentSignupForm({ handleFormSubmit, isFormSubmitting, 
               </div>
 
               <div className="form-outline mb-4">
+              <label htmlFor="dob" className="form-label">
+                  Date of Birth
+                </label>
                 <input
                   id="dob"
                   placeholder="DOB"
@@ -157,6 +175,9 @@ export default function StudentSignupForm({ handleFormSubmit, isFormSubmitting, 
                 {ErrorContent(touched, "profile_pic")}
               </div>
               <div className="form-outline mb-4">
+              <label htmlFor="password" className="form-label">
+                  Password
+                </label>
                 <input
                   id="password"
                   placeholder="Enter your password"
@@ -172,6 +193,9 @@ export default function StudentSignupForm({ handleFormSubmit, isFormSubmitting, 
                 {ErrorContent(touched, "password")}
               </div>
               <div className="form-outline mb-4">
+              <label htmlFor="confirmPassword" className="form-label">
+                  Confirm Password
+                </label>
                 <input
                   id="confirmPassword"
                   placeholder="Confirm Password"
