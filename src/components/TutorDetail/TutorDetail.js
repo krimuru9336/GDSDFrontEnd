@@ -37,15 +37,28 @@ export default function TutorDetail(){
             </div>
         </div>
 
-        <div class="d-flex flex-row-reverse">
-  <div class="p-2">{isLoggedIn() ? <button className="btn btn-primary"
-
->Enroll</button>  :
+        <div class="d-flex flex-row-reverse mt-2">
+  {isLoggedIn() ?
+  <>
+ <div className="mr-2">
+  <button 
+  onClick={()=>{
+    navigate("/messages", { state: {  tutorDetail } })
+  }}
+  style={{ marginLeft: "20px" }}
+  className="btn btn-primary"
+  >Message</button>
+  </div>
+  <div className="ml-2">
+  <button className="btn btn-primary"
+>Enroll</button> 
+</div>
+</> :
 <Link className="btn btn-primary"
 to="/login"
 >Login to enroll</Link>  
  
-}</div>
+}
   
 </div>
        

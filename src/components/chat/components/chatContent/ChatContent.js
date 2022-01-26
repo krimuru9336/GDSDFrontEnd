@@ -57,7 +57,11 @@ selectedUserDetail?.profile_pic.replace("/media", "/api/media") : defaultImage
 
   //render() {
     return (
+  
+     
       <div className="main__chatcontent">
+      {selectedUser &&(
+      <>
         <div className="content__header">
           <div className="blocks">
             <div className="current-chatting-user">
@@ -65,7 +69,7 @@ selectedUserDetail?.profile_pic.replace("/media", "/api/media") : defaultImage
                 isOnline="active"
                 image={selectedUserProfilePic}
               />
-              <p>{selectedUser ? selectedUser.first_name+" "+selectedUser.last_name : ""}</p>
+              <p>{selectedUser ? selectedUser.name ? selectedUser.name : selectedUser.first_name+" "+selectedUser.last_name : ""}</p>
             </div>
           </div>
 
@@ -121,7 +125,12 @@ selectedUserDetail?.profile_pic.replace("/media", "/api/media") : defaultImage
           </div>
           </form>
         </div>
+        </>
+      )
+      }
+    
       </div>
+     
     );
   }
-//}
+

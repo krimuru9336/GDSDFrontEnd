@@ -24,7 +24,8 @@ export default class ChatBody extends Component {
         users: [],
         filteredUsers: [],
         loggedInUserDetail: null,
-        selectedUser: null
+        selectedUser: null,
+        isFetching: false
     };
       }
 
@@ -41,16 +42,18 @@ export default class ChatBody extends Component {
       }
 
      componentDidMount(){
+       
         this.fetchUser()
         this.fetchMessagesForLoggedInUser()
         this.getLoggedInUserDetails()
+        
         this.configureApiCall()
        // this.fetchMessages() 
           /* const roomName = location.pathname.substr(1); */
           const endPoint = process.env.REACT_APP_API_END_POINT ? process.env.REACT_APP_API_END_POINT.replace("http://","ws://") : ""
   
   const token = getToken()
-  console.log(token)
+
           var socketPath = endPoint
               + '/ws?session_key='+token
           const chatSocket = new WebSocket(
@@ -106,6 +109,7 @@ clearInterval(this.interval)
     fetchUser = () => {
       const token = getToken()
       if(token) {
+        this.setState({ isFetching: true })
         const baseEndPoint = process.env.REACT_APP_API_END_POINT 
         const apiEndPoint = baseEndPoint+"/api/messageurl/user"
 
@@ -125,6 +129,8 @@ clearInterval(this.interval)
       .catch((err)=>{
         this.setState({users: []})
       
+      }).finally(()=>{
+      this.setState({isFetching: false})
       })
       }
     }
@@ -141,8 +147,12 @@ clearInterval(this.interval)
       }
     })
       .then(res => {
-      
+      // update state only if the messages are different
+      if(this.state.messages.length !== res.data?.results?.length) {
+       
         this.setState({messages: res.data ? res.data.results : []})
+      }
+       
       })
       .catch((err)=>{
         this.setState({messages: []})
@@ -220,24 +230,27 @@ clearInterval(this.interval)
 
 
   render() {
-   
+   const {messages,loggedInUserDetail ,filteredUsers, selectedUser, isFetching} = this.state
     return (
       <>
        <Navbar />
+     
       <div className="main__chatbody">
-        <ChatList users={this.state.filteredUsers}
+        <ChatList users={filteredUsers}
         onSearchInputChange={this.onSearchInputChange}
         onSelectUser={this.onSelectUser}
+        messages={messages}
         />
         <ChatContent
-        messages={this.state.messages}
+        messages={messages}
         onSubmit={this.onSubmit}
-        loggedInUserDetail={this.state.loggedInUserDetail}
+        loggedInUserDetail={loggedInUserDetail}
         onMessageSubmit={this.onMessageSubmit}
-        selectedUser={this.state.selectedUser}
+        selectedUser={selectedUser}
         />
-        <UserProfile currendLoggedInUser={this.state.loggedInUserDetail} />
+        <UserProfile currendLoggedInUser={loggedInUserDetail} />
       </div>
+  
       </>
     );
   }
