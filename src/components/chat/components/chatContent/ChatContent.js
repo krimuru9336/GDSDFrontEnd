@@ -26,7 +26,8 @@ setSelectedUserDetail(selectedUser)
       },[selectedUser])
 
 
-const loggedInUserProfilePic = loggedInUserDetail?.profile_pic ? loggedInUserDetail?.profile_pic : 
+const loggedInUserProfilePic = loggedInUserDetail?.profile_pic ? 
+process.env.REACT_APP_API_END_POINT+loggedInUserDetail?.profile_pic : 
 defaultImage
 const selectedUserProfilePic = selectedUserDetail?.profile_pic ? selectedUserDetail?.profile_pic : defaultImage
 

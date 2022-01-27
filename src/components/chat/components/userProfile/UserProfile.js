@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import { getFileFormatted } from "../../../../utils/utilityFunctions";
 import "./userProfile.css";
+import defaultImage from "../../../../assets/images/default.png"
 
 export default class UserProfile extends Component {
  
   render() {
     const {currendLoggedInUser} = this.props
- const profilePic = getFileFormatted(currendLoggedInUser?.profile_pic)
+ const profilePic = currendLoggedInUser?.profile_pic ? 
+ process.env.REACT_APP_API_END_POINT + currendLoggedInUser?.profile_pic  : defaultImage
     return (
       <div className="main__userprofile">
         <div className="profile__card user__profile__image">

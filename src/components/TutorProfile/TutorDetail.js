@@ -5,7 +5,9 @@ export default function TutorDetail({onEditClick, tutorData}){
     const { first_name, last_name,email , address, phone_number, DOB
     , skills_text, profile_pic, CV, is_teacher
     } = tutorData.data
-   const profileImage = profile_pic ? profile_pic: defaultImage 
+   const profileImage = profile_pic ? 
+   
+   process.env.REACT_APP_API_END_POINT+profile_pic: defaultImage 
    
    const cvFormattedText = CV ? CV  : null
 
