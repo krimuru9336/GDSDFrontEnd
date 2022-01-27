@@ -22,6 +22,7 @@ formatMessages()
 
       useEffect(()=>{
 setSelectedUserDetail(selectedUser)
+
       },[selectedUser])
 
 
@@ -31,14 +32,15 @@ const selectedUserProfilePic = selectedUserDetail?.profile_pic ? selectedUserDet
 
   const formatMessages = () => {
     const filterdMsgForSelectedUser = messages.filter((m)=>{
-     
       return selectedUser?.email === m.recipient || selectedUser?.email === m.user
     })
+    
     const newMsgList = filterdMsgForSelectedUser.map((m)=>{
+      
       return {
         key: m.id,
       image:m.user === loggedInUserDetail?.email ?
-      loggedInUserProfilePic : selectedUserProfilePic ,
+      loggedInUserProfilePic :  selectedUserProfilePic,
       type:m.user === loggedInUserDetail?.email ? "": "other",
       msg: m.body,
       time: m.timestamp,
@@ -83,14 +85,17 @@ const selectedUserProfilePic = selectedUserDetail?.profile_pic ? selectedUserDet
           <div className="chat__items">
             {allMessages?.map((itm, index) => {
               return (
+                <React.Fragment key={`chatItem-${index}`}>
                 <ChatItem
                   animationDelay={index + 2}
                   key={itm.key}
                   user={itm.type ? itm.type : "me"}
                   msg={itm.msg}
-                  image={itm.image}
+                /*   image={itm.image} */
+                image={itm.type ?  selectedUserProfilePic : itm.image}
                   time={itm.time}
                 />
+                </React.Fragment>
               );
             })}
           {/*   <div ref={this.messagesEndRef} /> */}
