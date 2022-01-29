@@ -2,9 +2,18 @@ import React from "react"
 import defaultImage from "../../assets/images/default.png"
 
 export default function TutorDetail({onEditClick, tutorData}){
-    const { first_name, last_name,email , address, phone_number, DOB} = tutorData.data
+    const { first_name, last_name,email , address, phone_number, DOB
+    , skills_text, profile_pic, CV, is_teacher
+    } = tutorData.data
+   const profileImage = profile_pic ? 
    
-    return (
+   process.env.REACT_APP_API_END_POINT+profile_pic: defaultImage 
+   
+   const cvFormattedText = CV ? CV  : null
+
+   
+
+   return (
         <div className="card p-5">
 
         <div className="d-flex flex-row-reverse mb-2">
@@ -17,11 +26,11 @@ export default function TutorDetail({onEditClick, tutorData}){
        </div>
         <div className="row">
             <h5 className="text-primary">Tutor Profile</h5>
-            <div className="col-3 col-md-3 mt-2">
-           <img src={defaultImage} height="120" width="120" />
-<input type="file" className="mt-2"></input>
+            <div className="col-md-3 col-sm-12 col-xs-12 mt-2">
+           <img src={profileImage} height="150" width="150" />
+{/* <input type="file" className="mt-2"></input> */}
             </div>
-            <div className="col-8">
+            <div className="col-md-9 col-xs-12 col-sm-12">
             <div className="card">
             <div className="card-header">
                 Personal Description
@@ -34,6 +43,11 @@ export default function TutorDetail({onEditClick, tutorData}){
     <li className="list-group-item">Address: {address}</li>
     <li className="list-group-item">Phone Number: {phone_number}</li>
     <li className="list-group-item">DOB: {DOB}</li>
+    <li className="list-group-item">Skills: {skills_text}</li>
+    {is_teacher &&
+    <li className="list-group-item">CV: {cvFormattedText ? <a 
+    target="_blank"
+    href={cvFormattedText}>Download</a> : "No CV"}</li>}
   </ul>
             </div>
         </div>

@@ -36,8 +36,8 @@ export default function SearchResults({ searchResults}) {
         <div className="mt-4">
         <h5 className="justify-left text-primary mb-2">Search Results</h5>
         <div className="d-flex flex-row-reverse">
-        <div className="form-group col-md-3 col-sm-12">
- <select name="category" className="form-control">
+        <div className="form-group col-md-3 col-sm-12 mb-2">
+ <select name="sort" className="form-control">
 <option value="">Sort</option>
 {sortOptions.map((i,index)=>{
   return <option key={index+"-cat"} value={i.value}>{i.label}</option>

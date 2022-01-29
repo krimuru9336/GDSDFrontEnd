@@ -46,6 +46,9 @@ export default function TutorSignupForm({ handleFormSubmit, isFormSubmitting, er
             >
               
               <div className="form-outline mb-4">
+              <label htmlFor="first_name" className="form-label">
+                  First Name
+                </label>
                 <input
                   id="first_name"
                   placeholder="First Name"
@@ -61,6 +64,9 @@ export default function TutorSignupForm({ handleFormSubmit, isFormSubmitting, er
                 {ErrorContent(touched, "first_name")}
               </div>
               <div className="form-outline mb-4">
+              <label htmlFor="last_name" className="form-label">
+                  Last Name
+                </label>
                 <input
                   id="last_name"
                   placeholder="Last Name"
@@ -76,9 +82,12 @@ export default function TutorSignupForm({ handleFormSubmit, isFormSubmitting, er
                 {ErrorContent(touched, "last_name")}
               </div>
               <div className="form-outline mb-4">
+              <label htmlFor="email" className="form-label">
+                  Email
+                </label>
                 <input
                   id="email"
-                  placeholder="Enter your email"
+                  placeholder="email"
                   type="text"
                   value={values.email}
                   onChange={handleChange}
@@ -91,6 +100,9 @@ export default function TutorSignupForm({ handleFormSubmit, isFormSubmitting, er
               </div>
               {ErrorContent(touched, "email")}
               <div className="form-outline mb-4">
+              <label htmlFor="address" className="form-label">
+                  Address
+                </label>
                 <input
                   id="address"
                   placeholder="Address"
@@ -106,6 +118,9 @@ export default function TutorSignupForm({ handleFormSubmit, isFormSubmitting, er
                 {ErrorContent(touched, "address")}
               </div>
               <div className="form-outline mb-4">
+              <label htmlFor="phone" className="form-label">
+                  Phone
+                </label>
                 <input
                   id="phone"
                   placeholder="Phone"
@@ -121,8 +136,10 @@ export default function TutorSignupForm({ handleFormSubmit, isFormSubmitting, er
                 )}
                 {ErrorContent(touched, "phone_number")}
               </div>
-
               <div className="form-outline mb-4">
+              <label htmlFor="dob" className="form-label">
+                  Date of Birth
+                </label>
                 <input
                   id="dob"
                   placeholder="DOB"
@@ -131,7 +148,7 @@ export default function TutorSignupForm({ handleFormSubmit, isFormSubmitting, er
                   onChange={handleChange}
                   onBlur={handleBlur}
                   className={"form-control"}
-                  max={new Date()}
+                  max='2006-12-31'
                 />
                 {errors.dob && touched.dob && (
                   <div className="text-danger">{errors.dob}</div>
@@ -193,6 +210,9 @@ export default function TutorSignupForm({ handleFormSubmit, isFormSubmitting, er
                 {ErrorContent(touched, "profile_pic")}
               </div>
               <div className="form-outline mb-4">
+              <label htmlFor="password" className="form-label">
+                  Password
+                </label>
                 <input
                   id="password"
                   placeholder="Enter your password"
@@ -208,6 +228,9 @@ export default function TutorSignupForm({ handleFormSubmit, isFormSubmitting, er
                 {ErrorContent(touched, "password")}
               </div>
               <div className="form-outline mb-4">
+              <label htmlFor="confirmPassword" className="form-label">
+                  Confirm Password
+                </label>
                 <input
                   id="confirmPassword"
                   placeholder="Confirm Password"

@@ -1,102 +1,80 @@
-import React, { Component } from "react";
+import React, { Component, useState, useEffect } from "react";
 import "./chatList.css";
 import ChatListItems from "./ChatListItems";
+import defaultImage from "../../../../assets/images/default.png"
+import { useNavigate, useLocation, Link  } from 'react-router-dom';
+import Avatar from "./Avatar";
 
-export default class ChatList extends Component {
-  allChatUsers = [
-    {
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTA78Na63ws7B7EAWYgTr9BxhX_Z8oLa1nvOA&usqp=CAU",
-      id: 1,
-      name: "Tim Hover",
-      active: true,
-      isOnline: true,
-    },
-    {
-      image:
-        "https://pbs.twimg.com/profile_images/1055263632861343745/vIqzOHXj.jpg",
-      id: 2,
-      name: "Ayub Rossi",
-      active: false,
-      isOnline: false,
-    },
-    {
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU",
-      id: 3,
-      name: "Hamaad Dejesus",
-      active: false,
-      isOnline: false,
-    },
-    {
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRZ6tM7Nj72bWjr_8IQ37Apr2lJup_pxX_uZA&usqp=CAU",
-      id: 4,
-      name: "Eleni Hobbs",
+export default function ChatList({users, onSearchInputChange, onSelectUser, messages}){
+  const [filterChatUserList,setFilterChatUserList] = useState([])
+  const location = useLocation()
+    
+
+    useEffect(()=>{
+  
+      getUser()
+    },[])
+
+    useEffect(()=>{
+     
+      getUser()
+    },[users, messages])
+
+const getUser = () => {
+  const tutorDetail = location.state ? location.state.tutorDetail : null
+  const filteredUserByMessages = users.filter((user)=> {
+    return messages.some((message)=>{
+return user.email === message.recipient || user.email === message.user
+    })
+  })
+ 
+  const userList = filteredUserByMessages.map((user)=> {
+    return  {
+      image: user.profile_pic ? user.profile_pic : defaultImage,
+      id: user.id,
+      name: user.first_name+ " "+user.last_name,
       active: false,
       isOnline: true,
-    },
-    {
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRJo1MiPQp3IIdp54vvRDXlhbqlhXW9v1v6kw&usqp=CAU",
-      id: 5,
-      name: "Elsa Black",
-      active: false,
-      isOnline: false,
-    },
-    {
-      image:
-        "https://huber.ghostpool.com/wp-content/uploads/avatars/3/596dfc2058143-bpfull.png",
-      id: 6,
-      name: "Kayley Mellor",
-      active: false,
-      isOnline: true,
-    },
-    {
-      image:
-        "https://www.paintingcontest.org/components/com_djclassifieds/assets/images/default_profile.png",
-      id: 7,
-      name: "Hasan Mcculloch",
-      active: false,
-      isOnline: true,
-    },
-    {
-      image:
-        "https://auraqatar.com/projects/Anakalabel/media//vesbrand/designer4.jpg",
-      id: 8,
-      name: "Autumn Mckee",
-      active: false,
-      isOnline: false,
-    },
-    {
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSM6p4C6imkewkCDW-9QrpV-MMAhOC7GnJcIQ&usqp=CAU",
-      id: 9,
-      name: "Allen Woodley",
-      active: false,
-      isOnline: true,
-    },
-    {
-      image: "https://pbs.twimg.com/profile_images/770394499/female.png",
-      id: 10,
-      name: "Manpreet David",
-      active: false,
-      isOnline: true,
-    },
-  ];
-  constructor(props) {
-    super(props);
-    this.state = {
-      allChats: this.allChatUsers,
-    };
+      animationDelay: 0-8,
+      email: user.email,
+      profile_pic: user.profile_pic
+    }
   }
-  render() {
+  )
+
+  if(tutorDetail) {
+    const user = {
+      image: tutorDetail.profile_pic ? tutorDetail.profile_pic :defaultImage,
+      id: tutorDetail.id,
+      name: tutorDetail.first_name+ " "+tutorDetail.last_name,
+      email: tutorDetail.email,
+      active: false,
+      isOnline: true,
+      animationDelay: 0.8,
+      email: tutorDetail.email,
+      profile_pic: tutorDetail.profile_pic
+    }
+    // if this user is not in list, the only push
+  const isUserThere = userList.filter((u)=>u.id === user.id)
+  if(isUserThere.length === 0) {
+    userList.push(user)
+  }
+  onSelectUser(user)
+  }
+  setFilterChatUserList(userList)
+}
+
+    const onSelectuserClick = user=> {
+     /*  const selectedUserDetail = users?.find((user)=>user.id === id ) */
+      onSelectUser(user)
+    }
+
     return (
       <div className="main__chatlist">
-        <button className="btn">
+        {/* <button className="btn">
           <i className="fa fa-plus"></i>
           <span>New conversation</span>
-        </button>
+        </button> */}
         <div className="chatlist__heading">
           <h2>Chats</h2>
           <button className="btn-nobg">
@@ -105,27 +83,52 @@ export default class ChatList extends Component {
         </div>
         <div className="chatList__search">
           <div className="search_wrap">
-            <input type="text" placeholder="Search Here" required />
+            <input type="text" placeholder="Search Here"
+            onChange={(e)=>onSearchInputChange(e.target.value)}
+            required />
             <button className="search-btn">
               <i className="fa fa-search"></i>
             </button>
           </div>
         </div>
         <div className="chatlist__items">
-          {this.state.allChats.map((item, index) => {
+          {filterChatUserList.map((item, index) => {
+           
             return (
-              <ChatListItems
+              <React.Fragment key={`chat-${item.email}-${index}`}>
+                 <div
+        style={{ animationDelay: `0.${item.animationDelay}s` }}
+        onClick={()=>onSelectuserClick(item)}
+        className={`chatlist__item ${
+          item.active ? item.active : ""
+        } `}
+      >
+        <Avatar
+          image={
+            item.image ? item.image : defaultImage
+          }
+          isOnline={item.isOnline}
+        />
+
+        <div className="userMeta">
+          <p>{item.name}</p>
+          <span className="activeTime">32 mins ago</span>
+        </div>
+      </div>
+              {/* <ChatListItems
                 name={item.name}
                 key={item.id}
                 animationDelay={index + 1}
                 active={item.active ? "active" : ""}
                 isOnline={item.isOnline ? "active" : ""}
                 image={item.image}
-              />
+                onSelectuserClick = {()=>onSelectuserClick(item.id)}
+              /> */}
+              </React.Fragment>
             );
           })}
         </div>
       </div>
     );
-  }
+  
 }

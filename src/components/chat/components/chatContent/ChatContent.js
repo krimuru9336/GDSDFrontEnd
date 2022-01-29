@@ -3,151 +3,138 @@ import React, { Component, useState, createRef, useEffect } from "react";
 import "./chatContent.css";
 import Avatar from "../chatList/Avatar";
 import ChatItem from "./ChatItem";
+import defaultImage from "../../../../assets/images/default.png"
 
-export default class ChatContent extends Component {
-  messagesEndRef = createRef(null);
-  chatItms = [
-    {
-      key: 1,
-      image:
-        "https://pbs.twimg.com/profile_images/1116431270697766912/-NfnQHvh_400x400.jpg",
-      type: "",
-      msg: "Hi Tim, How are you?",
-    },
-    {
-      key: 2,
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTA78Na63ws7B7EAWYgTr9BxhX_Z8oLa1nvOA&usqp=CAU",
-      type: "other",
-      msg: "I am fine.",
-    },
-    {
-      key: 3,
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTA78Na63ws7B7EAWYgTr9BxhX_Z8oLa1nvOA&usqp=CAU",
-      type: "other",
-      msg: "What about you?",
-    },
-    {
-      key: 4,
-      image:
-        "https://pbs.twimg.com/profile_images/1116431270697766912/-NfnQHvh_400x400.jpg",
-      type: "",
-      msg: "Awesome these days.",
-    },
-    {
-      key: 5,
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTA78Na63ws7B7EAWYgTr9BxhX_Z8oLa1nvOA&usqp=CAU",
-      type: "other",
-      msg: "Finally. What's the plan?",
-    },
-    {
-      key: 6,
-      image:
-        "https://pbs.twimg.com/profile_images/1116431270697766912/-NfnQHvh_400x400.jpg",
-      type: "",
-      msg: "what plan mate?",
-    },
-    {
-      key: 7,
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTA78Na63ws7B7EAWYgTr9BxhX_Z8oLa1nvOA&usqp=CAU",
-      type: "other",
-      msg: "I'm taliking about the tutorial",
-    },
-  ];
+export default function ChatContent({messages, loggedInUserDetail, onMessageSubmit, selectedUser}) {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      chat: this.chatItms,
-      msg: "",
-    };
-  }
+  const [allMessages, setAllMessages] = useState([])
+  const [messageTyped, setMessageTyped] = useState("")
+  const [selectedUserDetail, setSelectedUserDetail] = useState(null)
+ 
 
-  scrollToBottom = () => {
-    this.messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-  };
+  useEffect(()=>{
+formatMessages()
+  },[])
 
-  componentDidMount() {
-    window.addEventListener("keydown", (e) => {
-      if (e.keyCode == 13) {
-        if (this.state.msg != "") {
-          this.chatItms.push({
-            key: 1,
-            type: "",
-            msg: this.state.msg,
-            image:
-              "https://pbs.twimg.com/profile_images/1116431270697766912/-NfnQHvh_400x400.jpg",
-          });
-          this.setState({ chat: [...this.chatItms] });
-          this.scrollToBottom();
-          this.setState({ msg: "" });
-        }
+  useEffect(()=>{
+    formatMessages()
+      },[messages, selectedUser])
+
+      useEffect(()=>{
+setSelectedUserDetail(selectedUser)
+
+      },[selectedUser])
+
+
+const loggedInUserProfilePic = loggedInUserDetail?.profile_pic ? 
+process.env.REACT_APP_API_END_POINT+loggedInUserDetail?.profile_pic : 
+defaultImage
+const selectedUserProfilePic = selectedUserDetail?.profile_pic ? selectedUserDetail?.profile_pic : defaultImage
+
+  const formatMessages = () => {
+    const filterdMsgForSelectedUser = messages.filter((m)=>{
+      return selectedUser?.email === m.recipient || selectedUser?.email === m.user
+    })
+    
+    const newMsgList = filterdMsgForSelectedUser.map((m)=>{
+      
+      return {
+        key: m.id,
+      image:m.user === loggedInUserDetail?.email ?
+      loggedInUserProfilePic :  selectedUserProfilePic,
+      type:m.user === loggedInUserDetail?.email ? "": "other",
+      msg: m.body,
+      time: m.timestamp,
+      email: m.email
       }
-    });
-    this.scrollToBottom();
+    }).sort((a,b)=>a.key-b.key)
+    setAllMessages(newMsgList)
   }
-  onStateChange = (e) => {
-    this.setState({ msg: e.target.value });
-  };
 
-  render() {
+  const  onSubmitChat = () => {
+    onMessageSubmit(messageTyped, selectedUser)
+    setMessageTyped("")
+  }
+
+  //render() {
     return (
+  
+     
       <div className="main__chatcontent">
+      {selectedUser &&(
+      <>
         <div className="content__header">
           <div className="blocks">
             <div className="current-chatting-user">
               <Avatar
                 isOnline="active"
-                image="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTA78Na63ws7B7EAWYgTr9BxhX_Z8oLa1nvOA&usqp=CAU"
+                image={selectedUserProfilePic}
               />
-              <p>Tim Hover</p>
+              <p>{selectedUser ? selectedUser.name ? selectedUser.name : selectedUser.first_name+" "+selectedUser.last_name : ""}</p>
             </div>
           </div>
 
-          <div className="blocks">
+         {/*  <div className="blocks">
             <div className="settings">
               <button className="btn-nobg">
                 <i className="fa fa-cog"></i>
               </button>
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="content__body">
           <div className="chat__items">
-            {this.state.chat.map((itm, index) => {
+            {allMessages?.map((itm, index) => {
               return (
+                <React.Fragment key={`chatItem-${index}`}>
                 <ChatItem
                   animationDelay={index + 2}
                   key={itm.key}
                   user={itm.type ? itm.type : "me"}
                   msg={itm.msg}
-                  image={itm.image}
+                /*   image={itm.image} */
+                image={itm.type ?  selectedUserProfilePic : itm.image}
+                  time={itm.time}
                 />
+                </React.Fragment>
               );
             })}
-            <div ref={this.messagesEndRef} />
+          {/*   <div ref={this.messagesEndRef} /> */}
           </div>
         </div>
         <div className="content__footer">
+          <form onSubmit={(e)=>{
+            e.preventDefault()
+            onSubmitChat()
+           
+          }}>
           <div className="sendNewMessage">
-            <button className="addFiles">
+           {/*  <button className="addFiles">
               <i className="fa fa-plus"></i>
-            </button>
+            </button> */}
             <input
               type="text"
               placeholder="Type a message here"
-              onChange={this.onStateChange}
-              value={this.state.msg}
+              onChange={(e)=>setMessageTyped(e.target.value)}
+            /*   onChange={this.onStateChange}
+              value={this.state.msg} */
+              value={messageTyped}
             />
-            <button className="btnSendMsg" id="sendMsgBtn">
+            <button className="btnSendMsg"
+            type="submit"
+          /*   onClick={()=>this.props.onSubmit(this.state.msg)} */
+            id="sendMsgBtn">
               <i className="fa fa-paper-plane"></i>
             </button>
           </div>
+          </form>
         </div>
+        </>
+      )
+      }
+    
       </div>
+     
     );
   }
-}
+

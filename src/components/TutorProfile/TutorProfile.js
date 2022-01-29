@@ -6,14 +6,21 @@ import { useNavigate } from 'react-router-dom';
 import TutorDetail from "./TutorDetail";
 import Navbar from "../../Navbar/FuldemyNavbar";
 
+
 export default function TutorProfile(){
     const navigate = useNavigate();
     const [tutorProfile, setTutorProfile] = useState(null)
     const [showEdit,setShowEdit] = useState(false)
+    
 
     useEffect(()=>{
         fetchTableData()
+       
     },[])
+
+   
+  
+  
 
     const fetchTableData = () => {
       const token = getToken()

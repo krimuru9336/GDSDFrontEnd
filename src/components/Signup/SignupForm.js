@@ -18,6 +18,7 @@ export default function SignupForm({ handleFormSubmit, isFormSubmitting, errorRe
   ];
   
 
+ 
   const ErrorContent = (touched, fieldName) => {
     return errorResponseMessage && touched[fieldName] ? 
     <div className="text-danger">{errorResponseMessage[fieldName]}</div> : ""
@@ -190,7 +191,7 @@ export default function SignupForm({ handleFormSubmit, isFormSubmitting, errorRe
                  
                   onChange={(e)=>{
                     e.preventDefault()
-                    console.log(e.target.files[0])
+                    
                     setFieldValue("cv",e.target.files[0])
                   }}
                   onBlur={handleBlur}
@@ -206,7 +207,6 @@ export default function SignupForm({ handleFormSubmit, isFormSubmitting, errorRe
               <label htmlFor="profile_pic" className="form-label">Profile Picture</label>
                 <input
                   id="profile_pic"
-               
                   type="file"
                   accept="image/png, image/gif, image/jpeg"
                   onChange={(e)=>{

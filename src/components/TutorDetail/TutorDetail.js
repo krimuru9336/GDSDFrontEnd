@@ -1,9 +1,10 @@
 import React from "react";
 import catImage from "../Search/catImage.jpeg"
 import PersonalDescription from "./PersonalDescription";
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import Navbar from "../../Navbar/FuldemyNavbar";
-import Review from "../TutorReview/TutorReviewForm"
+import defaultImage from "../../assets/images/default.png"
+import { isLoggedIn } from "../../utils/utilityFunctions";
 
 export default function TutorDetail() {
     const navigate = useNavigate();
@@ -11,7 +12,8 @@ export default function TutorDetail() {
     const location = useLocation()
 
     const tutorDetail = location.state ? location.state.tutorDetail : null
-
+    const profile_Image = tutorDetail ? tutorDetail.profile_pic :
+        tutorDetail.profile_pic ? defaultImage : defaultImage
     return (
         <>
             <Navbar />
@@ -27,14 +29,37 @@ export default function TutorDetail() {
 
                     <div className="row">
                         <div className="col-3">
-                            <img src={tutorDetail ? tutorDetail.profile_pic ? tutorDetail.profile_pic : catImage : catImage} className="col-md-10 mb-2" />
+                            <img src={profile_Image} className="col-md-12 mb-2" />
                         </div>
                         <div className="col-9">
                             <PersonalDescription tutorDetail={tutorDetail} />
                         </div>
                     </div>
 
-                    <Review />
+                    <div class="d-flex flex-row-reverse mt-2">
+                        {isLoggedIn() ?
+                            <>
+                                <div className="mr-2">
+                                    <button
+                                        onClick={() => {
+                                            navigate("/messages", { state: { tutorDetail } })
+                                        }}
+                                        style={{ marginLeft: "20px" }}
+                                        className="btn btn-primary"
+                                    >Message</button>
+                                </div>
+                                <div className="ml-2">
+                                    <button className="btn btn-primary"
+                                    >Enroll</button>
+                                </div>
+                            </> :
+                            <Link className="btn btn-primary"
+                                to="/login"
+                            >Login to enroll</Link>
+
+                        }
+
+                    </div>
 
                 </div>
             </div>
