@@ -16,6 +16,7 @@ import Signup from './components/Signup/Signup';
 import TutorDetail from './components/TutorDetail/TutorDetail';
 import TutorForm from './components/Tutor/TutorForm.js/TutorForm';
 import ChatBody from "./components/chat/components/chatBody/ChatBody";
+import AdminPage from './components/Admin/AdminPage';
 import React from 'react';
 import { useLocation } from "react-router-dom"
 import TutorProfile from './components/TutorProfile/TutorProfile';
@@ -45,6 +46,7 @@ Demonstration Only</h6>
       <Route path="/tutor-profile-create" element={<TutorForm />} />
       <Route path="/messages" element={<ChatBody />} />
       <Route path="/my-profile" element={<TutorProfile />} />
+      <Route path="/admin-page" element={<AdminPage />} />
     </Routes>
    
   </BrowserRouter>
