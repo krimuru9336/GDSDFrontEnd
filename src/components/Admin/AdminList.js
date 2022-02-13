@@ -51,30 +51,32 @@ export default function AdminList({ admins, onSuccessApproveReject }) {
       });
   };
   return (
-      <div className="card p-2">
-              <div className="row">
-      <div className="col-sm">{email}</div>
-      <div className="col-sm">
-        {CV ? (
-          <a className="btn btn-primary" target="_blank" href={CV}>
-            View CV
-          </a>
-        ) : (
-          "No CV"
-        )}
-      </div>
-      <div className="col-sm">
-        <button
-          onClick={() => onAcceptOrReject(true)}
-          className="btn btn-success"
-        >
-          Accept
-        </button>
-      </div>
-      <div>
+    <div className="card p-2">
+      <div className="row">
+        <div className="col-sm">{email}</div>
+        <div className="col-sm">
+          {CV ? (
+            <a
+              className="btn btn-primary"
+              target="_blank"
+              href={process.env.REACT_APP_API_END_POINT + CV}
+            >
+              View CV
+            </a>
+          ) : (
+            "No CV"
+          )}
+        </div>
+        <div className="col-sm">
+          <button
+            onClick={() => onAcceptOrReject(true)}
+            className="btn btn-success"
+          >
+            Accept
+          </button>
+        </div>
+        <div></div>
       </div>
     </div>
-      </div>
-
   );
 }
