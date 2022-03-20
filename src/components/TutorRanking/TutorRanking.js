@@ -1,35 +1,13 @@
 import React from "react"
+import TutorCard from "../Tutor/TutorCard"
 
-import TutorCard from "./TutorCard"
 
-export default function TutorsOfWeek({ tutors }) {
-    const data = [
-        {
-            id: 1,
-            tutor_first_name: "Ramesh",
-            tutor_last_name: "Suresh"
-        },
-        {
-            id: 2,
-            tutor_first_name: "Hari",
-            tutor_last_name: "Zuk"
-        },
-        {
-            id: 3,
-            tutor_first_name: "Hamile",
-            tutor_last_name: "Pap"
-        },
-        {
-            id: 1,
-            tutor_first_name: "Sanke",
-            tutor_last_name: "SuSuman"
-        },
-
-    ]
+export default function TutorRating({ tutors }) {
     return (
+
         <>
             <div className="mt-4">
-                <h5 className="justify-left  text-primary mb-2">Tutors of the week</h5>
+                <h5 className="justify-left  text-primary mb-2">Top Rated Tutor</h5>
                 <div className="row">
                     {tutors.length > 0 ?
                         tutors.map((item, index) => {
