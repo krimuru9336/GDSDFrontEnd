@@ -5,6 +5,7 @@ import {
   Route
 } from "react-router-dom";
 import Navbar from './Navbar/FuldemyNavbar';
+import Footer from './Footer/Footer';
 import AddTutor from './components/Tutor/AddTutor';
 import DeleteTutor from './components/Tutor/DeleteTutor';
 import GetByIdTutor from './components/Tutor/GetById';
@@ -32,7 +33,7 @@ Demonstration Only</h6>
 <BrowserRouter>
       
     <Routes>
-       <Route path="/" element={<Home />} />
+      <Route path="/" element={<Home />} />
       <Route path="/add-tutor" element={<AddTutor />} />
       <Route path="/delete" element={<DeleteTutor />} />
       <Route path="/get-by-id" element={<GetByIdTutor />} />
@@ -50,7 +51,12 @@ Demonstration Only</h6>
     </Routes>
    
   </BrowserRouter>
+    
+  <div><Footer/></div>
+  
     </div>
+
+
   );
 }
 
