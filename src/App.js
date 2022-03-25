@@ -21,6 +21,7 @@ import AdminPage from './components/Admin/AdminPage';
 import React from 'react';
 import { useLocation } from "react-router-dom"
 import TutorProfile from './components/TutorProfile/TutorProfile';
+import Timetable from './components/TutorDetail/Timetable';
 
 function App() {
 
@@ -44,6 +45,7 @@ Demonstration Only</h6>
       <Route path="/register" element={<Signup />} />
       <Route path="/login" element={<Login />} />
       <Route path="/tutor-detail" element={<TutorDetail />} />
+      <Route path="/timetable" element={<Timetable />} />
       <Route path="/tutor-profile-create" element={<TutorForm />} />
       <Route path="/messages" element={<ChatBody />} />
       <Route path="/my-profile" element={<TutorProfile />} />

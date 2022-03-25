@@ -7,6 +7,7 @@ import defaultImage from "../../assets/images/default.png"
 import { getToken, isLoggedIn } from "../../utils/utilityFunctions";
 import TutorReviewForm from "../TutorReview/TutorReviewForm"
 import EnrollmentForm from "./EnrollmentForm"
+import Timetable from "./Timetable"
 import axios from "axios"
 
 export default function TutorDetail() {
@@ -121,6 +122,7 @@ export default function TutorDetail() {
                     console.log(res.data)
                     if (res.data.status === "success") {
                         setResponseMessage("Success")
+                        
                     } else {
                         setResponseMessage("Error")
 
@@ -188,6 +190,15 @@ export default function TutorDetail() {
                                     <button className="btn btn-primary"
                                         onClick={() => setShowEnrollmentForm(true)}
                                     >Enroll</button>
+                                </div>
+                                <div className="mr-2">
+                                    <button
+                                        onClick={() => {
+                                            navigate("/timetable", { state: { tutorDetail } })
+                                        }}
+                                        style={{ marginLeft: "20px" }}
+                                        className="btn btn-primary"
+                                    >View Timetable</button>
                                 </div>
                             </> :
                             <Link className="btn btn-primary"
