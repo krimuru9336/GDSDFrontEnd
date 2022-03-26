@@ -1,6 +1,7 @@
 import React from "react";
 import defaultImage from "../../assets/images/default.png";
 import { Link } from "react-router-dom";
+import "./style.css";
 
 export default function TutorDetail({ onEditClick, tutorData }) {
   const {
@@ -30,6 +31,7 @@ export default function TutorDetail({ onEditClick, tutorData }) {
             Edit
           </button>
         </div>
+        <div className="gap-gap"></div>
         <div className="mr-2">
           {is_admin ? (
             <Link className="btn btn-secondary btn-sm" to="/admin-page">
