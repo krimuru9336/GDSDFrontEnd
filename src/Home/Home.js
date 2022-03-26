@@ -27,7 +27,7 @@ export default function Home() {
 
     const baseEndPoint = process.env.REACT_APP_API_END_POINT
     const apiEndPoint = baseEndPoint + "/api/tutor"
-    const apiEndPointReview = baseEndPoint + "/api/reviews"
+
     setIsLoading(true)
     axios.get(apiEndPoint, {
 
@@ -46,18 +46,7 @@ export default function Home() {
         setIsLoading(false)
       })
 
-    axios.get(apiEndPointReview, {}).then((revRes) => {
-      const allReviewsList = revRes.data
-      if (allReviewsList && allTutors) {
 
-        console.log(allReviewsList)
-        let tutorListWithRating = allTutors.map((tutor) => {
-          const reviewForCurrentTutor = allReviewsList.filter((rev) => rev.tutor_id === tutor.id)
-          console.log("here", reviewForCurrentTutor)
-        })
-
-      }
-    })
 
 
 
