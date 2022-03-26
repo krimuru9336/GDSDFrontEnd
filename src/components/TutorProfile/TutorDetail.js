@@ -1,9 +1,12 @@
 import React from "react";
 import defaultImage from "../../assets/images/default.png";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+
 
 export default function TutorDetail({ onEditClick, tutorData }) {
+  const navigate = useNavigate();
   const {
+    id,
     first_name,
     last_name,
     email,
@@ -22,6 +25,7 @@ export default function TutorDetail({ onEditClick, tutorData }) {
 
   const cvFormattedText = CV ? CV : null;
 
+  console.log("Kri data",tutorData.data);
   return (
     <div className="card p-5">
       <div className="d-flex flex-row-reverse mt-2">
@@ -39,6 +43,23 @@ export default function TutorDetail({ onEditClick, tutorData }) {
             <div></div>
           )}
         </div>
+        <div className="mr-2">
+          {is_teacher ? (
+            <div className="mr-2">
+            <button
+                onClick={() => {
+                    navigate("/timetable-edit", { state: { tutorData } })
+                }}
+                style={{ marginLeft: "20px" }}
+                className="btn btn-primary"
+            >Edit Timetable</button>
+        </div>
+
+          ) : (
+            <div></div>
+          )}
+        </div>
+
       </div>
       <div className="row">
         <h5 className="text-primary">Tutor Profile</h5>
@@ -51,6 +72,7 @@ export default function TutorDetail({ onEditClick, tutorData }) {
             <div className="card-header">Personal Description</div>
             <div className="card-body">
               <ul className="list-group list-group-flush">
+                <li className="list-group-item">My ID: {id}</li>
                 <li className="list-group-item">First Name: {first_name}</li>
                 <li className="list-group-item">Last Name: {last_name}</li>
                 <li className="list-group-item">Email: {email}</li>

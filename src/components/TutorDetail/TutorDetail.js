@@ -200,6 +200,9 @@ export default function TutorDetail() {
                                         className="btn btn-primary"
                                     >View Timetable</button>
                                 </div>
+
+                            
+
                             </> :
                             <Link className="btn btn-primary"
                                 to="/login"

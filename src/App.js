@@ -22,6 +22,7 @@ import React from 'react';
 import { useLocation } from "react-router-dom"
 import TutorProfile from './components/TutorProfile/TutorProfile';
 import Timetable from './components/TutorDetail/Timetable';
+import TimetableEdit from './components/TutorDetail/TimetableEdit';
 
 function App() {
 
@@ -46,6 +47,7 @@ Demonstration Only</h6>
       <Route path="/login" element={<Login />} />
       <Route path="/tutor-detail" element={<TutorDetail />} />
       <Route path="/timetable" element={<Timetable />} />
+      <Route path="/timetable-edit" element={<TimetableEdit />} />
       <Route path="/tutor-profile-create" element={<TutorForm />} />
       <Route path="/messages" element={<ChatBody />} />
       <Route path="/my-profile" element={<TutorProfile />} />
