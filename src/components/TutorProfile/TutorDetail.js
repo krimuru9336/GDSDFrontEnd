@@ -2,10 +2,7 @@ import React from "react";
 import defaultImage from "../../assets/images/default.png";
 import { Link } from "react-router-dom";
 
-
-
 export default function TutorDetail({ onEditClick, tutorData }) {
-    
   const {
     first_name,
     last_name,
@@ -17,6 +14,7 @@ export default function TutorDetail({ onEditClick, tutorData }) {
     profile_pic,
     CV,
     is_teacher,
+    is_admin,
   } = tutorData.data;
   const profileImage = profile_pic
     ? process.env.REACT_APP_API_END_POINT + profile_pic
@@ -27,15 +25,19 @@ export default function TutorDetail({ onEditClick, tutorData }) {
   return (
     <div className="card p-5">
       <div className="d-flex flex-row-reverse mt-2">
-          <div className="mr-2">
-          <button onClick={onEditClick} className="btn btn-sm btn-primary">
-          Edit
-        </button>
-          </div>
         <div className="mr-2">
-          <Link className="btn btn-secondary btn-sm" to="/admin-page">
-            Admin Console
-          </Link>
+          <button onClick={onEditClick} className="btn btn-sm btn-primary">
+            Edit
+          </button>
+        </div>
+        <div className="mr-2">
+          {is_admin ? (
+            <Link className="btn btn-secondary btn-sm" to="/admin-page">
+              Admin Console
+            </Link>
+          ) : (
+            <div></div>
+          )}
         </div>
       </div>
       <div className="row">
