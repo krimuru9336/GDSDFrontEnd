@@ -1,7 +1,6 @@
 import React from "react";
 import defaultImage from "../../assets/images/default.png";
 import { useNavigate, Link } from "react-router-dom";
-import { Link } from "react-router-dom";
 import "./style.css";
 
 export default function TutorDetail({ onEditClick, tutorData }) {
