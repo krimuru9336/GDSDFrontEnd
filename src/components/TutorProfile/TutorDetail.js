@@ -25,6 +25,8 @@ export default function TutorDetail({ onEditClick, tutorData }) {
 
   const cvFormattedText = CV ? CV : null;
 
+  const tutId = id;
+
   console.log("Kri data",tutorData.data);
   return (
     <div className="card p-5">
@@ -44,23 +46,7 @@ export default function TutorDetail({ onEditClick, tutorData }) {
             <div></div>
           )}
         </div>
-        <div className="mr-2">
-          {is_teacher ? (
-            <div className="mr-2">
-            <button
-                onClick={() => {
-                    navigate("/timetable-edit", { state: { tutorData } })
-                }}
-                style={{ marginLeft: "20px" }}
-                className="btn btn-primary"
-            >Edit Timetable</button>
-        </div>
-
-          ) : (
-            <div></div>
-          )}
-        </div>
-
+     
       </div>
       <div className="row">
         <h5 className="text-primary">Tutor Profile</h5>
@@ -95,10 +81,39 @@ export default function TutorDetail({ onEditClick, tutorData }) {
                     )}
                   </li>
                 )}
+                
               </ul>
             </div>
           </div>
+          <br/>
+          <div className="mr-2">
+                {is_teacher ? (
+                  <div className="mr-2">
+                  <button
+                      onClick={() => {
+                          
+                          navigate("/timetable", { state: { tutId } })
+                      }}
+                      style={{ marginLeft: "20px" }}
+                      className="btn btn-primary"
+                  >View Timetable</button>
+
+                  <button
+                      onClick={() => {
+                          navigate("/timetable-edit", { state: { tutorData } })
+                      }}
+                      style={{ marginLeft: "20px" }}
+                      className="btn btn-primary"
+                  >Edit Timetable</button>
+
+                </div>
+              ) : (
+                  <div></div>
+                )}
+              </div>
+          
         </div>
+    
       </div>
     </div>
   );

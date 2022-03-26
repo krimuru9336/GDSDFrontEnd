@@ -19,13 +19,12 @@ export default function TimetableEdit() {
     const baseEndPoint = process.env.REACT_APP_API_END_POINT   
     const apiEndPoint = baseEndPoint+"/api/tutor/timetable/"
    const { days_of_the_week, start_time, end_time} = values
+  
+   const tutorDetail = location.state ? location.state.tutorData : null
 
-   
-    const token = getToken()     
-   const tutorDetail = location.state ? location.state.tutorDetail : null
-   const tutorId = tutorDetail.id
+   const tutorId = tutorDetail ? tutorDetail.data ? tutorDetail.data.id : null : null
+    const tutId = tutorId
 
-   console.log("API", apiEndPoint)
 axios.patch(apiEndPoint, {
     tutor_id: tutorId,
     days_of_the_week: days_of_the_week,
@@ -38,7 +37,7 @@ axios.patch(apiEndPoint, {
     if(res.status === 200) {
       setResponseMessage("success")
      
-navigate("/")
+navigate("/timetable", { state: { tutId } })
 localStorage.setItem("token", res.data.access)
     } else {
       setResponseMessage("Update timetable Failed 37")

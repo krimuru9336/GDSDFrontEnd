@@ -21,8 +21,8 @@ export default function Timetable() {
         // DO this to the API result data
 
        
-        const tutorDetail = location.state ? location.state.tutorDetail : null
-        const tutorId = tutorDetail.id
+        const tutorId = location.state ? location.state.tutId : null
+        // const tutorId = tutorDetail.id
         console.log("KRIID",tutorId)
         const baseEndPoint = process.env.REACT_APP_API_END_POINT
         const apiEndPoint = baseEndPoint + "/api/tutor/timetable/" + tutorId
