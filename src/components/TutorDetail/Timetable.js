@@ -21,8 +21,9 @@ export default function Timetable() {
         // DO this to the API result data
 
        
-        const tutorDetail = location.state ? location.state.tutorDetail : null
-        const tutorId = tutorDetail.id
+        const tutorId = location.state ? location.state.tutId : null
+        // const tutorId = tutorDetail.id
+        console.log("KRIID",tutorId)
         const baseEndPoint = process.env.REACT_APP_API_END_POINT
         const apiEndPoint = baseEndPoint + "/api/tutor/timetable/" + tutorId
 
@@ -216,11 +217,21 @@ export default function Timetable() {
    }
    
 
+   const navigate = useNavigate();
     return ( 
         
     <div>      
-        
-
+        <Navbar />
+        {/* <button
+            onClick={() => {
+                
+                const tutorDetail = location.state ? location.state.tutorDetail : null
+                navigate("/timetable-edit", { state: { tutorDetail } })
+            }}
+            style={{ marginLeft: "20px" }}
+            className="btn btn-primary"
+        >Edit Timetable</button> */}
+<br/>
 <table class="table">
   <tbody>  
 {timeList.map((timeIndex, i)=>{
@@ -235,7 +246,7 @@ export default function Timetable() {
                 {dayIndex.dayValue === 0 && 
                 <th scope="row">{timeIndex.label}</th>
                 }
-    <td>{isTimeInBetween(timeIndex.value, dayIndex.dayValue) ? <div style={{backgroundColor:"red"}}>  
+    <td>{isTimeInBetween(timeIndex.value, dayIndex.dayValue) ? <div style={{backgroundColor:"#0cff08"}}>  
      
      {isTimeInBetween(timeIndex.value, dayIndex.dayValue)}
 

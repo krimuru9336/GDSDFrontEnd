@@ -194,12 +194,16 @@ export default function TutorDetail() {
                                 <div className="mr-2">
                                     <button
                                         onClick={() => {
-                                            navigate("/timetable", { state: { tutorDetail } })
+                                            const tutId = tutorDetail.id
+                                            navigate("/timetable", { state: { tutId } })
                                         }}
                                         style={{ marginLeft: "20px" }}
                                         className="btn btn-primary"
                                     >View Timetable</button>
                                 </div>
+
+                            
+
                             </> :
                             <Link className="btn btn-primary"
                                 to="/login"
