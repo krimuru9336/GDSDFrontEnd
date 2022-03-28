@@ -5,6 +5,7 @@ import {
   Route
 } from "react-router-dom";
 import Navbar from './Navbar/FuldemyNavbar';
+import Footer from './Footer/Footer';
 import AddTutor from './components/Tutor/AddTutor';
 import DeleteTutor from './components/Tutor/DeleteTutor';
 import GetByIdTutor from './components/Tutor/GetById';
@@ -16,9 +17,11 @@ import Signup from './components/Signup/Signup';
 import TutorDetail from './components/TutorDetail/TutorDetail';
 import TutorForm from './components/Tutor/TutorForm.js/TutorForm';
 import ChatBody from "./components/chat/components/chatBody/ChatBody";
+import AdminPage from './components/Admin/AdminPage';
 import React from 'react';
 import { useLocation } from "react-router-dom"
 import TutorProfile from './components/TutorProfile/TutorProfile';
+import Timetable from './components/TutorDetail/Timetable';
 
 function App() {
 
@@ -31,7 +34,7 @@ Demonstration Only</h6>
 <BrowserRouter>
       
     <Routes>
-       <Route path="/" element={<Home />} />
+      <Route path="/" element={<Home />} />
       <Route path="/add-tutor" element={<AddTutor />} />
       <Route path="/delete" element={<DeleteTutor />} />
       <Route path="/get-by-id" element={<GetByIdTutor />} />
@@ -42,13 +45,20 @@ Demonstration Only</h6>
       <Route path="/register" element={<Signup />} />
       <Route path="/login" element={<Login />} />
       <Route path="/tutor-detail" element={<TutorDetail />} />
+      <Route path="/timetable" element={<Timetable />} />
       <Route path="/tutor-profile-create" element={<TutorForm />} />
       <Route path="/messages" element={<ChatBody />} />
       <Route path="/my-profile" element={<TutorProfile />} />
+      <Route path="/admin-page" element={<AdminPage />} />
     </Routes>
    
   </BrowserRouter>
+    
+  <div><Footer/></div>
+  
     </div>
+
+
   );
 }
 
