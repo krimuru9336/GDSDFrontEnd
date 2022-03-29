@@ -13,6 +13,8 @@ export default function PersonalDescription({tutorDetail }){
     <li className="list-group-item">Last Name: {tutorDetail?.last_name}</li>
     {/* <li className="list-group-item">Email: {tutorDetail?.email}</li> */}
     <li className="list-group-item">Skills: {tutorDetail?.skills_text}</li>
+    {
+    <li className="list-group-item">Hourly Rate(Eur): {tutorDetail?.price_hourly_in_eur}</li>}
   </ul>
             </div>
         </div>

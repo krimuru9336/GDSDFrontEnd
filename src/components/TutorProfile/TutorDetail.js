@@ -18,6 +18,7 @@ export default function TutorDetail({ onEditClick, tutorData }) {
     CV,
     is_teacher,
     is_admin,
+    price_hourly_in_eur
   } = tutorData.data;
   const profileImage = profile_pic
     ? process.env.REACT_APP_API_END_POINT + profile_pic
@@ -69,6 +70,7 @@ export default function TutorDetail({ onEditClick, tutorData }) {
                 </li>
                 <li className="list-group-item">DOB: {DOB}</li>
                 <li className="list-group-item">Skills: {skills_text}</li>
+                <li className="list-group-item">Hourly Rate(Eur): {price_hourly_in_eur}</li>
                 {is_teacher && (
                   <li className="list-group-item">
                     CV:{" "}
@@ -105,6 +107,14 @@ export default function TutorDetail({ onEditClick, tutorData }) {
                       style={{ marginLeft: "20px" }}
                       className="btn btn-primary"
                   >Edit Timetable</button>
+
+<button
+                      onClick={() => {
+                          navigate("/timetable-delete", { state: { tutId } })
+                      }}
+                      style={{ marginLeft: "20px" }}
+                      className="btn btn-danger"
+                  >Delete Timetable</button>
 
                 </div>
               ) : (

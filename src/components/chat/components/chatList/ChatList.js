@@ -71,10 +71,7 @@ return user.email === message.recipient || user.email === message.user
 
     return (
       <div className="main__chatlist">
-        {/* <button className="btn">
-          <i className="fa fa-plus"></i>
-          <span>New conversation</span>
-        </button> */}
+     
         <div className="chatlist__heading">
           <h2>Chats</h2>
           <button className="btn-nobg">
@@ -92,6 +89,25 @@ return user.email === message.recipient || user.email === message.user
           </div>
         </div>
         <div className="chatlist__items">
+
+        <div
+        style={{ animationDelay: `0.2s` }}
+        onClick={()=>onSelectuserClick("chatbot")}
+        className={`chatlist__item `}
+      >
+        <Avatar
+          image={
+       defaultImage
+          }
+          isOnline={true}
+        />
+
+        <div className="userMeta">
+          <p>ChatBot</p>
+        {/*   <span className="activeTime">32 mins ago</span> */}
+        </div>
+      </div>
+
           {filterChatUserList.map((item, index) => {
            
             return (
@@ -115,15 +131,7 @@ return user.email === message.recipient || user.email === message.user
           <span className="activeTime">32 mins ago</span>
         </div>
       </div>
-              {/* <ChatListItems
-                name={item.name}
-                key={item.id}
-                animationDelay={index + 1}
-                active={item.active ? "active" : ""}
-                isOnline={item.isOnline ? "active" : ""}
-                image={item.image}
-                onSelectuserClick = {()=>onSelectuserClick(item.id)}
-              /> */}
+            
               </React.Fragment>
             );
           })}

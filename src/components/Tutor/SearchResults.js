@@ -1,26 +1,38 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 
 import TutorCard from "./TutorCard"
 
 export default function SearchResults({ searchResults}) {
-    const data = [
-        {
-            id: 1,
-            tutor_first_name: "Ramesh",
-            tutor_last_name: "Suresh"
-        },
-        
-    ]
+const [resultsComputed, setResultsComputer] = useState([])
+const [sortCriteria, setSortCriteria] = useState("")
+
+useEffect(()=>{
+setResultsComputer(searchResults)
+}, [searchResults])
+
+useEffect(()=>{
+    computeSort()
+}, [sortCriteria])
+
+const computeSort = () => {
+    let sortedArr = searchResults
+    if(sortCriteria === "fd") {
+sortedArr = searchResults.sort((a,b)=> a.price_hourly_in_eur - b.price_hourly_in_eur)
+    } else if(sortCriteria === "fa"){
+        sortedArr = searchResults.sort((a,b)=> b.price_hourly_in_eur - a.price_hourly_in_eur)
+    }
+    setResultsComputer(sortedArr)
+}
 
     const sortOptions = [
-        {
+      /*   {
             label: "Sort by Rating Ascending",
             value: "ra"
         },  
         {
             label: "Sort by Rating Descending",
             value: "rd"
-        },  
+        },   */
         {
             label: "Sort by Fee Ascending",
             value: "fa"
@@ -37,7 +49,9 @@ export default function SearchResults({ searchResults}) {
         <h5 className="justify-left text-primary mb-2">Search Results</h5>
         <div className="d-flex flex-row-reverse">
         <div className="form-group col-md-3 col-sm-12 mb-2">
- <select name="sort" className="form-control">
+ <select name="sort"
+ onChange={(e)=>setSortCriteria(e.target.value)}
+ className="form-control">
 <option value="">Sort</option>
 {sortOptions.map((i,index)=>{
   return <option key={index+"-cat"} value={i.value}>{i.label}</option>
@@ -48,7 +62,7 @@ export default function SearchResults({ searchResults}) {
 </div>
         <div className="row">
     {searchResults.length > 0 ?
-    searchResults.map((item, index)=>{
+    resultsComputed.map((item, index)=>{
         return (
             <div
             key={item.id}

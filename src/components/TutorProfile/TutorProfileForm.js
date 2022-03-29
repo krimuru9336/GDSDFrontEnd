@@ -65,7 +65,7 @@ export default function TutorProfileForm({onEditClickClose, tutorData}){
               DOB,
               cv,
               profileImage,
-            
+              price_hourly_in_eur,
               skillsNew
             } = values;
             const token = getToken()
@@ -78,6 +78,7 @@ export default function TutorProfileForm({onEditClickClose, tutorData}){
                 first_name: first_name,
                 phone_number: phone_number,
                 DOB: moment(DOB).format("YYYY-MM-DD"),
+                price_hourly_in_eur: price_hourly_in_eur,
               } 
               if(cv) {
                 reqBody.CV = cv
@@ -125,7 +126,7 @@ export default function TutorProfileForm({onEditClickClose, tutorData}){
         
         setTimeout(()=>{
           setResponseMessage("")
-        }, 3000)
+        }, 5000)
                 
               })
               .catch((err) => {

@@ -191,7 +191,7 @@ export default function TutorDetail() {
                                         onClick={() => setShowEnrollmentForm(true)}
                                     >Enroll</button>
                                 </div>
-                                <div className="mr-2">
+                                <div className="mr-2 ml-2">
                                     <button
                                         onClick={() => {
                                             const tutId = tutorDetail.id

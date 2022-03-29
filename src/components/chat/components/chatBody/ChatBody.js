@@ -7,6 +7,7 @@ import Navbar from "../../../../Navbar/FuldemyNavbar";
 import moment from "moment";
 import { getToken } from "../../../../utils/utilityFunctions";
 import axios from "axios"
+import ChatBot from "../chatContent/Chatbot";
 //import {io} from "socket.io-client";
 const WebSocketClient = require('websocket').client;
 var W3CWebSocket = require('websocket').w3cwebsocket;
@@ -25,7 +26,8 @@ export default class ChatBody extends Component {
         filteredUsers: [],
         loggedInUserDetail: null,
         selectedUser: null,
-        isFetching: false
+        isFetching: false,
+        isChatBotBody: false
     };
       }
 
@@ -223,15 +225,24 @@ clearInterval(this.interval)
 
 
     onSelectUser = (user) => {
-      this.setState({
-        selectedUser: user
-      })
+      if(user === "chatbot"){
+        this.setState({
+          selectedUser: null,
+          isChatBotBody: true
+        })
+      } else {
+        this.setState({
+          selectedUser: user,
+          isChatBotBody: false
+        })
+      }
+     
     }
 
 
   render() {
  
-   const {messages,loggedInUserDetail ,filteredUsers, selectedUser, isFetching} = this.state
+   const {messages,loggedInUserDetail ,filteredUsers, selectedUser,  isChatBotBody} = this.state
   
    return (
       <>
@@ -243,6 +254,14 @@ clearInterval(this.interval)
         onSelectUser={this.onSelectUser}
         messages={messages}
         />
+{isChatBotBody  ?
+  <ChatBot
+       
+    
+        loggedInUserDetail={loggedInUserDetail}
+     
+        />
+:
         <ChatContent
         messages={messages}
         onSubmit={this.onSubmit}
@@ -250,6 +269,7 @@ clearInterval(this.interval)
         onMessageSubmit={this.onMessageSubmit}
         selectedUser={selectedUser}
         />
+}
         <UserProfile currendLoggedInUser={loggedInUserDetail} />
       </div>
   
