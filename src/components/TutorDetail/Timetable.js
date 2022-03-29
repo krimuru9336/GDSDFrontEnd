@@ -203,7 +203,7 @@ export default function Timetable() {
     let flag = false
     timetableList.forEach((i)=>{
         if(i.days_of_the_week === dayValue+1) {
-            if(i.startTimeInt-1 <= currentIndexHr && i.endTimeInt-1 >= currentIndexHr){
+            if(i.startTimeInt-1 < currentIndexHr && i.endTimeInt-1 >= currentIndexHr){
                 // Instead of true, you can return any thing like subject name present or tutor name, it will hsow in that row
                 // flag = true
 
