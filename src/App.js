@@ -6,6 +6,8 @@ import {
 } from "react-router-dom";
 import Navbar from './Navbar/FuldemyNavbar';
 import Footer from './Footer/Footer';
+import Mission from './Footer/Mission';
+import Vision from './Footer/Vision';
 import AddTutor from './components/Tutor/AddTutor';
 import DeleteTutor from './components/Tutor/DeleteTutor';
 import GetByIdTutor from './components/Tutor/GetById';
@@ -49,12 +51,13 @@ Demonstration Only</h6>
       <Route path="/tutor-detail" element={<TutorDetail />} />
       <Route path="/timetable" element={<Timetable />} />
       <Route path="/timetable-edit" element={<TimetableEdit />} />
-      <Route path="/timetable-delete" element={<TimetableDelete  />} />
-      
+      <Route path="/timetable-delete" element={<TimetableDelete  />} />  
       <Route path="/tutor-profile-create" element={<TutorForm />} />
       <Route path="/messages" element={<ChatBody />} />
       <Route path="/my-profile" element={<TutorProfile />} />
       <Route path="/admin-page" element={<AdminPage />} />
+      <Route path="/mission" element={<Mission />} />
+      <Route path="/vision" element={<Vision />} />
     </Routes>
    
   </BrowserRouter>

@@ -29,21 +29,25 @@ Demonstration Only</h6>
         <Row>
           <Column>
             <Heading>About Us</Heading>
-            <FooterLink href="#">Aim</FooterLink>
-            <FooterLink href="#">Vision</FooterLink>
-          </Column>
-          <Column>
-            <Heading>Services</Heading>
-            <FooterLink href="#">Get Paid</FooterLink>
-            <FooterLink href="#">Gain Knowledge</FooterLink>
+            <FooterLink href="/mission">Mission</FooterLink>
+            <FooterLink href="/vision">Vision</FooterLink>
           </Column>
           <Column>
             <Heading>Developers</Heading>
-            <FooterLink href="#">Kri</FooterLink>
-            <FooterLink href="#">Pia</FooterLink>
-            <FooterLink href="#">Dipesh</FooterLink>
-            <FooterLink href="#">Soyam</FooterLink>
-            <FooterLink href="#">Naqi</FooterLink>
+            <FooterLink href="https://github.com/krimuru9336">Kri</FooterLink>
+            <FooterLink href="https://github.com/stringmad">Pia</FooterLink>
+            <FooterLink href="https://github.com/dipeshchau">Dipesh</FooterLink>
+            <FooterLink href="https://github.com/SoyamHsFulda">Soyam</FooterLink>
+            <FooterLink href="https://github.com/syednaqirazabukh">Naqi</FooterLink>
+            <FooterLink href="https://github.com/mujeeb11503051">Mujeeb</FooterLink>
+          </Column>
+          <Column>
+            <Heading>CEO</Heading>
+            <FooterLink href="mailto:rainer.todtenhoefer@informatik.hs-fulda.de">Prof. Todtenhoefer</FooterLink>
+          </Column>
+          <Column>
+            <Heading>Hochschule Fulda</Heading>
+            <FooterLink href="https://www.hs-fulda.de/">Fulda University of Applied Science</FooterLink>
           </Column>
         </Row>
       </Container>
