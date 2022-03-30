@@ -33,7 +33,6 @@ export default function LoginForm({handleFormSubmit, isFormSubmitting}) {
             e.preventDefault()
             handleSubmit()}}      autoComplete="off">
               <div className="form-outline mb-4">
-          
           <br/>
             <p>Pick the Day of the Week</p>
             <select
@@ -48,13 +47,14 @@ export default function LoginForm({handleFormSubmit, isFormSubmitting}) {
               }
          
             >  
+              <option value="1">Sunday</option>
               <option value="2">Monday</option>
               <option value="3">Tuesday</option>
               <option value="4">Wednesday</option>
-              <option value="4">Thursday</option>
-              <option value="4">Friday</option>
-              <option value="4">Saturday</option>
-              <option value="1">Sunday</option>
+              <option value="5">Thursday</option>
+              <option value="6">Friday</option>
+              <option value="7">Saturday</option>
+              
             </select>
            
             </div>
@@ -64,7 +64,7 @@ export default function LoginForm({handleFormSubmit, isFormSubmitting}) {
             <p>Pick the start time</p>
             <input
               id="start_time"
-              placeholder="Enter your start_time"
+              placeholder="HH:MM:SS"
               type="text"
               value={values.start_time}
               onChange={handleChange}
@@ -73,7 +73,9 @@ export default function LoginForm({handleFormSubmit, isFormSubmitting}) {
                 "form-control"
               }
             />
-           
+
+           {touched["start_time"] && errors["start_time"] && <p style={{color:"red"}}>{errors["start_time"]}</p> }
+
             </div>
 
             <div className="form-outline mb-4">
@@ -82,7 +84,7 @@ export default function LoginForm({handleFormSubmit, isFormSubmitting}) {
             <p>Pick the end time</p>
             <input
                 id="end_time"
-                placeholder="Enter your end_time"
+                placeholder="HH:MM:SS"
                 type="text"
                 value={values.end_time}
                 onChange={handleChange}
@@ -92,6 +94,8 @@ export default function LoginForm({handleFormSubmit, isFormSubmitting}) {
                 }
             />
             
+            {touched["end_time"] && errors["end_time"] && <p style={{color:"red"}}>{errors["end_time"]}</p> }
+
             </div>
 
 <div className="common-text-center">
