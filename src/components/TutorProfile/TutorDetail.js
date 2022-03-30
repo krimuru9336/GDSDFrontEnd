@@ -18,7 +18,7 @@ export default function TutorDetail({ onEditClick, tutorData }) {
     CV,
     is_teacher,
     is_admin,
-    price_hourly_in_eur
+    price_hourly_in_eur,
   } = tutorData.data;
   const profileImage = profile_pic
     ? process.env.REACT_APP_API_END_POINT + profile_pic
@@ -28,7 +28,7 @@ export default function TutorDetail({ onEditClick, tutorData }) {
 
   const tutId = id;
 
-  console.log("Kri data",tutorData.data);
+  console.log("Kri data", tutorData.data);
   return (
     <div className="card p-5">
       <div className="d-flex flex-row-reverse mt-2">
@@ -47,10 +47,11 @@ export default function TutorDetail({ onEditClick, tutorData }) {
             <div></div>
           )}
         </div>
-     
       </div>
       <div className="row">
-        <h5 className="text-primary">Tutor Profile</h5>
+        <h5 className="text-primary">
+          {is_teacher ? "Tutor Profile" : "Student Profile"}
+        </h5>
         <div className="col-md-3 col-sm-12 col-xs-12 mt-2">
           <img src={profileImage} height="150" width="150" />
           {/* <input type="file" className="mt-2"></input> */}
@@ -70,12 +71,19 @@ export default function TutorDetail({ onEditClick, tutorData }) {
                 </li>
                 <li className="list-group-item">DOB: {DOB}</li>
                 <li className="list-group-item">Skills: {skills_text}</li>
-                <li className="list-group-item">Hourly Rate(Eur): {price_hourly_in_eur}</li>
+                <li className="list-group-item">
+                  Hourly Rate(Eur): {price_hourly_in_eur}
+                </li>
                 {is_teacher && (
                   <li className="list-group-item">
                     CV:{" "}
                     {cvFormattedText ? (
-                      <a target="_blank" href={cvFormattedText}>
+                      <a
+                        target="_blank"
+                        href={
+                          process.env.REACT_APP_API_END_POINT + cvFormattedText
+                        }
+                      >
                         Download
                       </a>
                     ) : (
@@ -83,47 +91,48 @@ export default function TutorDetail({ onEditClick, tutorData }) {
                     )}
                   </li>
                 )}
-                
               </ul>
             </div>
           </div>
-          <br/>
+          <br />
           <div className="mr-2">
-                {is_teacher ? (
-                  <div className="mr-2">
-                  <button
-                      onClick={() => {
-                          
-                          navigate("/timetable", { state: { tutId } })
-                      }}
-                      style={{ marginLeft: "20px" }}
-                      className="btn btn-primary"
-                  >View Timetable</button>
+            {is_teacher ? (
+              <div className="mr-2">
+                <button
+                  onClick={() => {
+                    navigate("/timetable", { state: { tutId } });
+                  }}
+                  style={{ marginLeft: "20px" }}
+                  className="btn btn-primary"
+                >
+                  View Timetable
+                </button>
 
-                  <button
-                      onClick={() => {
-                          navigate("/timetable-edit", { state: { tutorData } })
-                      }}
-                      style={{ marginLeft: "20px" }}
-                      className="btn btn-primary"
-                  >Edit Timetable</button>
+                <button
+                  onClick={() => {
+                    navigate("/timetable-edit", { state: { tutorData } });
+                  }}
+                  style={{ marginLeft: "20px" }}
+                  className="btn btn-primary"
+                >
+                  Edit Timetable
+                </button>
 
-<button
-                      onClick={() => {
-                          navigate("/timetable-delete", { state: { tutId } })
-                      }}
-                      style={{ marginLeft: "20px" }}
-                      className="btn btn-danger"
-                  >Delete Timetable</button>
-
-                </div>
-              ) : (
-                  <div></div>
-                )}
+                <button
+                  onClick={() => {
+                    navigate("/timetable-delete", { state: { tutId } });
+                  }}
+                  style={{ marginLeft: "20px" }}
+                  className="btn btn-danger"
+                >
+                  Delete Timetable
+                </button>
               </div>
-          
+            ) : (
+              <div></div>
+            )}
+          </div>
         </div>
-    
       </div>
     </div>
   );
