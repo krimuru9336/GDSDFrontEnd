@@ -1,30 +1,25 @@
-import React, {useEffect, useState} from "react"
-import {Link} from "react-router-dom"
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import "./../components/TutorProfile/style.css";
 
-export default function Navbar(){
-   
-
-    const isUserLoggedId  = () => {
-        const accessToken = localStorage.getItem("token")
-        if(accessToken) {
-            return true
-    
-        } else {
-          return false
-        }
+export default function Navbar() {
+  const isUserLoggedId = () => {
+    const accessToken = localStorage.getItem("token");
+    if (accessToken) {
+      return true;
+    } else {
+      return false;
     }
-    
-    
+  };
 
-    const onLogout = () => {
-        localStorage.removeItem("token")
-        
-    }
-    const isLoggedIn = isUserLoggedId()
-    
-    return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          {/* <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
+  const onLogout = () => {
+    localStorage.removeItem("token");
+  };
+  const isLoggedIn = isUserLoggedId();
+
+  return (
+    <nav className="navbar navbar-expand-lg navbar-light bg-dark">
+      {/* <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
           <ul className="navbar-nav mr-auto">
           <Link className="navbar-brand" style={{marginLeft: "20px"}} to="/">Fuldemy</Link>
   <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,22 +40,27 @@ export default function Navbar(){
         </ul>
     </div> */}
 
-
-  
-    <div class="container-fluid">
-        <Link className="navbar-brand" style={{marginLeft: "20px"}} to="/">Fuldemy</Link>
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
+      <div class="container-fluid">
+        <Link className="navbar-brand" style={{ marginLeft: "20px" }} to="/">
+          <div className="fuldemyHeader">Fuldemy</div>
+        </Link>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-               
-            </ul>
-            <ul className="navbar-nav">
-            
-                {!isLoggedIn ? 
-            <>
-          {/*   <li className="nav-item">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+          <ul className="navbar-nav">
+            {!isLoggedIn ? (
+              <>
+                {/*   <li className="nav-item">
         <Link className="nav-link" to="/add-tutor">Add Tutor</Link>
       </li>
       <li className="nav-item">
@@ -75,45 +75,42 @@ export default function Navbar(){
       <li className="nav-item">
         <Link className="nav-link" to="/get-all">Get All</Link>
       </li> */}
- <li className="nav-item">
-                    <Link class="nav-link" to="/login">
-                      Login
-                      </Link>
+                <li className="nav-item">
+                  <Link class="nav-link" to="/login">
+                    <div className="menuItems">Login</div>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                    <Link class="nav-link" to="/register">
-                      Sign Up
-                      </Link>
+                  <Link class="nav-link" to="/register">
+                    <div className="menuItems">Sign Up</div>
+                  </Link>
                 </li>
-            </> : 
-            
-            <>
-<li className="nav-item">
-                    <Link class="nav-link" to="/messages">
-                      My Messages
-                      </Link>
+              </>
+            ) : (
+              <>
+                <li className="nav-item">
+                  <Link class="nav-link" to="/messages">
+                    <div className="menuItems">My Messages</div>
+                    
+                  </Link>
                 </li>
                 <li className="nav-item">
-                <Link class="nav-link" to="/my-profile">
-                      My Profile
-                      </Link>
+                  <Link class="nav-link" to="/my-profile">
+                  <div className="menuItems">My Profile</div>
+                    
+                  </Link>
                 </li>
-                <li
-                onClick={()=>onLogout()}
-                className="nav-item">
-                    <Link
-                    onClick={()=>onLogout()}
-                    class="nav-link" to="/login">
-                      Logout
-                      </Link>
+                <li onClick={() => onLogout()} className="nav-item">
+                  <Link onClick={() => onLogout()} class="nav-link" to="/login">
+                  <div className="menuItems">Logout</div>
+                    
+                  </Link>
                 </li>
-            </>
-            }
-           
-            </ul>
+              </>
+            )}
+          </ul>
         </div>
-    </div>
-
-</nav>
-    )
+      </div>
+    </nav>
+  );
 }

@@ -179,6 +179,23 @@ export default function FormComponent({ handleFormSubmit, isFormSubmitting, form
   </div>
 
   <div class="form-group row mb-3">
+    <label htmlFor="hourlyRate" class="col-sm-2 col-form-label">Hourly Rate(EUR)</label>
+    <div class="col-sm-10">
+      <input type="number" 
+      name="price_hourly_in_eur"
+       value={values.price_hourly_in_eur}
+       onChange={handleChange}
+       onBlur={handleBlur}
+      class="form-control" id="hourlyRate" placeholder="Hourly Rate(EUR)" />
+      {errors.price_hourly_in_eur && touched.price_hourly_in_eur && (
+                  <div className="text-danger">{errors.price_hourly_in_eur}</div>
+                )}
+                {ErrorContent(touched, "price_hourly_in_eur")}
+    </div>
+  
+  </div>
+
+  <div class="form-group row mb-3">
     <label htmlFor="password" class="col-sm-2 col-form-label">Password</label>
     <div class="col-sm-10">
       <input type="password" 

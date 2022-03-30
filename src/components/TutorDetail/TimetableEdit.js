@@ -38,7 +38,7 @@ axios.patch(apiEndPoint, {
       setResponseMessage("success")
      
 navigate("/timetable", { state: { tutId } })
-localStorage.setItem("token", res.data.access)
+
     } else {
       setResponseMessage("Update timetable Failed 37")
     }

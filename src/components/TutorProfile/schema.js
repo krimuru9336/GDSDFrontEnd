@@ -11,7 +11,8 @@ export const initialValues = {
     profileImage: "",
     cv:"",
     passwordNew: "",
-    skillsNew: ""
+    skillsNew: "",
+    price_hourly_in_eur: ""
 }
 
 export const schemaValidation =  yup.object().shape({
@@ -31,4 +32,5 @@ export const schemaValidation =  yup.object().shape({
     first_name: yup.string().required("First Name is required"),
     last_name: yup.string().required("Last Name is required"),
     phone_number: yup.number().required("Phone is required"),
+    
   });
